@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="dev">
+</Property><Property Name="Solution File" Value="D:\Git\md\dev\dev.sln">
+</Property><Property Name="Date" Value="2016年1月5日">
+</Property><Property Name="Time" Value="3:48">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="dev.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="dev.sln" Description="Converted">
+</Event></UpgradeLog>
