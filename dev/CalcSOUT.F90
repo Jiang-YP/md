@@ -1,0 +1,94 @@
+subroutine CalcSOUT
+  use CommonDef
+  use VaporConc
+  
+! Complete the rest parameters in global variable of COM_MOD 
+  call CalcModule(COM_MOD)
+! Complete the rest parameters in global stream variables 
+  call CalcStream(COM_SIN(1), COM_MOD%CSA1)
+  call CalcStream(COM_SIN(2), COM_MOD%CSA2)
+
+  if (COM_OPT(3) .eq. 1) then
+  ! Write MD module parameters into data file for debugging
+    call WriteMOD('tmp_MOD.txt')
+  ! Write streams into data file for debugging
+    call WriteStream('tmp_stream.txt')
+  end if
+  
+! Calculate the temperature profiles in both lumen and shell sides  
+  call CalcProfile(COM_SIN(1), COM_SIN(2), COM_SOUT(1), COM_SOUT(2))
+  
+end subroutine
+
+subroutine WriteMOD(DataFileName)
+  use CommonDef
+  use toolkits
+  
+  character*(*), intent(in) :: DataFileName
+  real, dimension(21) :: mod_data
+  
+  mod_data(1) = COM_MOD%NUM
+  mod_data(2) = COM_MOD%LEN
+  mod_data(3) = COM_MOD%ID1
+  mod_data(4) = COM_MOD%OD1
+  mod_data(5) = COM_MOD%ID2
+  mod_data(6) = COM_MOD%OD2
+  mod_data(7) = COM_MOD%THK
+  mod_data(8) = COM_MOD%PHI
+  mod_data(9) = COM_MOD%AM
+  mod_data(10) = COM_MOD%CSA1
+  mod_data(11) = COM_MOD%CSA2
+  mod_data(12) = COM_MOD%Membrane%rho
+  mod_data(13) = COM_MOD%Membrane%mu
+  mod_data(14) = COM_MOD%Membrane%cp
+  mod_data(15) = COM_MOD%Membrane%KM
+  mod_data(16) = COM_MOD%Membrane%CM
+  mod_data(17) = COM_MOD%Membrane%porosity
+  mod_data(18) = COM_MOD%Membrane%tortuosity
+  mod_data(19) = COM_MOD%Membrane%PoreRadius
+  mod_data(20) = COM_MOD%Performance%JM
+  mod_data(21) = COM_MOD%Performance%eta
+  
+  open(11, file = DataFileName, status = 'replace')
+  write(11, '(E12.5)') mod_data
+  write(11, *)
+  write(11, *) 'Successfully generate data file at '//clock()//' '//date()
+  close(11)
+  
+end subroutine
+
+subroutine WriteStream(DataFileName)
+  use CommonDef
+  use toolkits
+  
+  character*(*), intent(in) :: DataFileName
+  real, dimension(15,2) :: stream_data
+  integer :: ISIDE
+  
+  do ISIDE = 1, 2
+    stream_data(1,ISIDE) = COM_SIN(ISIDE)%W
+    stream_data(2,ISIDE) = COM_SIN(ISIDE)%T
+    stream_data(3,ISIDE) = COM_SIN(ISIDE)%P
+    stream_data(4,ISIDE) = COM_SIN(ISIDE)%G
+    stream_data(5,ISIDE) = COM_SIN(ISIDE)%u
+    stream_data(6,ISIDE) = COM_SIN(ISIDE)%Re
+    stream_data(7,ISIDE) = COM_SIN(ISIDE)%Nu
+    stream_data(8,ISIDE) = COM_SIN(ISIDE)%PhysProp%rho
+    stream_data(9,ISIDE) = COM_SIN(ISIDE)%PhysProp%mu
+    stream_data(10,ISIDE) = COM_SIN(ISIDE)%PhysProp%cp
+    stream_data(11,ISIDE) = COM_SIN(ISIDE)%PhysProp%KM
+    stream_data(12,ISIDE) = COM_SIN(ISIDE)%MassFrac%H2O
+    stream_data(13,ISIDE) = COM_SIN(ISIDE)%MassFrac%NaCl
+    stream_data(14,ISIDE) = COM_SIN(ISIDE)%MolarFlow%H2O
+    stream_data(15,ISIDE) = COM_SIN(ISIDE)%MolarFlow%NaCl    
+  end do
+  
+  open(11, file = DataFileName, status = 'replace')
+  do i = 1, 15
+    write(11, '(2E12.5)') (stream_data(i,ISIDE), ISIDE = 1, 2)
+  end do
+  write(11, *)
+  write(11, *) 'Successfully generate data file at '//clock()//' '//date()  
+  close(11)
+  
+end subroutine

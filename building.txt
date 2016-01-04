@@ -1,0 +1,7 @@
+Prerequisites:
+ * Intel Visual Fortran v11.1
+ * AspenOne V7.3 (which provides a script to compile and link the required files)
+Building:
+ ./etc
+More info:
+ ./doc

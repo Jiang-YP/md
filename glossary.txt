@@ -1,0 +1,3 @@
+MD: membrane distillation (膜精馏)
+DCMD: direct contact MD (直接接触式膜精馏)
+HF: hollow fiber

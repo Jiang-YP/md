@@ -1,0 +1,539 @@
+MM "27.0" FLAVOR "NO" VERSION "27.0" DATETIME "Mon May 26 20:26:45 2014" 
+MACHINE "WIN-NT/VC"  ; 
+startlibrary
+version1
+NumLibs = 3
+Built-In
+ACM Built-In
+Membrane Process
+NumCats = 11
+Mixers/Splitters
+active
+Separators
+active
+Exchangers
+active
+Columns
+active
+Reactors
+active
+Pressure Changers
+active
+Manipulators
+active
+Solids
+active
+Solids Separators
+active
+User Models
+active
+Membrane Distillation
+active
+endlibrary
+; 
+1
+>VERSION 1392965980
+B1
+HF Module
+Membrane Process
+USER2
+? SETUP MAIN ? \ SIMULATE INTERACTIVE = NO MOLEFLOW = MOLEFLOW VISITED = 1 \ 
+? SETUP GLOBAL ? \ "IN-UNITS" INSET = MET \ ? SETUP DIAGNOSTICS ? ? SETUP 
+"SIM-OPTIONS" ? ; "MET_MOLE" ; ? SETUP "ACCOUNT-INFO" ? \ ACCOUNT USER-NAME
+ = "GGQ" \ ? SETUP DESCRIPTION ? \ DESCRIP DESCRIP = ( "Feeding in shell side" 
+) \ ? ODATABANKS ? \ ODATABANKS AUTO-PARAM = YES \ ? DATABANKS ? \ DATABANKS 
+FILE-SYM-NAM = ( "APV80 ASPENPCD" "APV80 AQUEOUS" "APV80 SOLIDS" 
+"APV80 INORGANIC" "APV80 PURE27" ) \ ? COMPONENTS MAIN ? \ COMPONENTS CID = 
+H2O ANAME = H2O OUTNAME = H2O TYPE = CONV DBNAME1 = "WATER" ANAME1 = "H2O" /  
+CID = NACL ANAME = NACL OUTNAME = NACL TYPE = CONV DBNAME1 = "SODIUM-CHLORIDE" 
+ANAME1 = "NACL" /  CID = "NA+" ANAME = NA+ OUTNAME = "NA+" DBNAME1 = "NA+" 
+ANAME1 = "NA+" /  CID = "NACL(S)" ANAME = NACL OUTNAME = "NACL(S)" TYPE = 
+SOLID DBNAME1 = "SODIUM-CHLORIDE" ANAME1 = "NACL" /  CID = "CL-" ANAME = CL- 
+OUTNAME = "CL-" DBNAME1 = "CL-" ANAME1 = "CL-" \ ? COMPONENTS "ADA/PCS" 
+"LE-PROP-DATA" ? ; "MET_MOLE" ; ? COMPONENTS "COMP-LIST" GLOBAL ? ? SOLVE ? \ 
+"RUN-MODE" MODE = SIM \ ? "DYN-OPTIONS" ? ? CHEMISTRY GLOBAL ? ; "MET_MOLE" ; 
+\ PARAM GAMMA-BASIS = UNSYMMETRIC \ \ DISS ELECID = NACL DISS-CID = "CL-" 
+DISS-COEF = 1 <0> <0> /  ELECID = NACL DISS-CID = "NA+" DISS-COEF = 1 <0> <0> 
+\ \ SALT SALTID = "NACL(S)" SALT-CID = "CL-" SALT-COEF = 1 <0> <0> /  SALTID
+ = "NACL(S)" SALT-CID = "NA+" SALT-COEF = 1 <0> <0> \ \ K-SALT K-SALTID = 
+"NACL(S)" K-A = -203.587494 <0> <0> K-B = 4381.175781 <0> <0> K-C = 35.875179 
+<0> <0> K-D = -0.067216 <0> <0> \ \ SALT-DATA S-D-SALTID = "NACL(S)" \ \ 
+ALLREACT RXNID = "NACL(S)" RXNSTRING = "NACL(S)  <-->  CL-  +  NA+" RXNTYPE
+ = "Salt" /  RXNID = "NACL" RXNSTRING = "NACL  -->  CL-  +  NA+" RXNTYPE = 
+"Dissociation" \ ? FLOWSHEET GLOBAL ? \ BLOCK BLKID = B1 BLKTYPE = USER2 
+MDLTYPE = "HF Module" IN = ( F1 M3-4 P1 M0-1 ) OUT = ( F2 M3-4 P2 M0-1 ) \ ? 
+PROPERTIES MAIN ? \ GPROPERTIES GBASEOPSET = "ENRTL-RK" GOPSETNAME = "ENRTL-RK" 
+GCHEMISTRY = GLOBAL GTRUE-COMPS = YES PARCON = -1 \ ? PROPERTIES "OPTION-SETS" 
+"ENRTL-RK" ? \ PARAM BASE = "ENRTL-RK" \ ? PROPERTIES "MOLEC-STRUCT" "CL-" ? 
+? PROPERTIES "MOLEC-STRUCT" H2O ? ? PROPERTIES "MOLEC-STRUCT" "NA+" ? ? 
+PROPERTIES "MOLEC-STRUCT" NACL ? ? PROPERTIES "MOLEC-STRUCT" "NACL(S)" ? ? 
+PROPERTIES PARAMETERS BINARY SCALAR "MLQKIJ-1" ? ; "MET_MOLE" ; \ PROP-LIST 
+PARAMNAME = MLQKIJ SETNO = 1 UNITROW = 0 \ ? PROPERTIES PARAMETERS BINARY 
+SCALAR "RKTKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = RKTKIJ SETNO = 1 
+UNITROW = 0 \ ? PROPERTIES PARAMETERS BINARY SCALAR "VLQKIJ-1" ? ; "MET_MOLE" 
+; \ PROP-LIST PARAMNAME = VLQKIJ SETNO = 1 UNITROW = 0 \ ? PROPERTIES 
+PARAMETERS BINARY "T-DEPENDENT" "ANDKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST 
+PARAMNAME = ANDKIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 2 
+\ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "ANDMIJ-1" ? ; "ENG_MOLE" ; \ 
+PROP-LIST PARAMNAME = ANDMIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL
+ = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "HENRY-1" ? ; 
+"MET_MOLE" ; \ PROP-LIST PARAMNAME = HENRY SETNO = 1 UNITROW = 20 UNITLABEL
+ = atm TUNITROW = 22 TUNITLABEL = K BDBANK = ( "APV80 ENRTL-RK" "APV80 BINARY" 
+"APV80 HENRY-AP" ) NEL = 7 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" 
+"MUKIJ-1" ? ; "MET_MOLE" ; \ PROP-LIST PARAMNAME = MUKIJ SETNO = 1 UNITROW = 0 
+TUNITROW = 22 TUNITLABEL = K BDBANK = ( "APV80 PC-SAFT" ) NEL = 6 \ ? 
+PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "MULIJ-1" ? ; "MET_MOLE" ; \ 
+PROP-LIST PARAMNAME = MULIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = 
+K BDBANK = ( "APV80 PC-SAFT" ) NEL = 11 \ ? PROPERTIES PARAMETERS BINARY 
+"T-DEPENDENT" "NRTL-1" ? ; "MET_MOLE" ; \ PROP-LIST PARAMNAME = NRTL SETNO = 
+1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = K BDBANK = ( "APV80 ENRTL-RK" ) NEL
+ = 12 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "VLCLK-1" ? ; "MET_MOLE" 
+; \ PROP-LIST PARAMNAME = VLCLK SETNO = 1 UNITROW = 43 UNITLABEL = "cc/mol" 
+TUNITROW = 0 BDBANK = ( "APV80 ENRTL-RK" ) NEL = 2 \ \ BPVAL PARAMNAME2 = 
+VLCLK CID1 = "NA+" CID2 = "CL-" UNITROW2 = 43 UNITLABEL2 = "cc/mol" TUNITROW2
+ = 0 VAL1 = "APV80 ENRTL-RK" VAL2 = "APV80 ENRTL-RK" \ ? PROPERTIES 
+PARAMETERS PAIR "GMENCC-1" ? ; "MET_MOLE" ; \ PROP-LIST PARAMNAME = GMENCC 
+SETNO = 1 UNITROW = 0 BDBANK = ( "APV80 ENRTL-RK" ) \ \ PPVAL PARAMNAME2 = 
+GMENCC 1 CID1A = H2O CID2A = "NA+" CID2B = "CL-" VALUE = "APV80 ENRTL-RK" \ \ 
+PPVAL PARAMNAME2 = GMENCC 2 CID1A = "NA+" CID1B = "CL-" CID2A = H2O VALUE = 
+"APV80 ENRTL-RK" \ ? PROPERTIES PARAMETERS PAIR "GMENCD-1" ? ; "MET_MOLE" ; \ 
+PROP-LIST PARAMNAME = GMENCD SETNO = 1 UNITROW = 22 UNITLABEL = K BDBANK = ( 
+"APV80 ENRTL-RK" ) \ \ PPVAL PARAMNAME2 = GMENCD 1 CID1A = H2O CID2A = "NA+" 
+CID2B = "CL-" VALUE = "APV80 ENRTL-RK" \ \ PPVAL PARAMNAME2 = GMENCD 2 CID1A
+ = "NA+" CID1B = "CL-" CID2A = H2O VALUE = "APV80 ENRTL-RK" \ ? PROPERTIES 
+PARAMETERS PAIR "GMENCE-1" ? ; "MET_MOLE" ; \ PROP-LIST PARAMNAME = GMENCE 
+SETNO = 1 UNITROW = 0 BDBANK = ( "APV80 ENRTL-RK" ) \ \ PPVAL PARAMNAME2 = 
+GMENCE 1 CID1A = H2O CID2A = "NA+" CID2B = "CL-" VALUE = "APV80 ENRTL-RK" \ \ 
+PPVAL PARAMNAME2 = GMENCE 2 CID1A = "NA+" CID1B = "CL-" CID2A = H2O VALUE = 
+"APV80 ENRTL-RK" \ ? PROPERTIES PARAMETERS PAIR "GMENCN-1" ? ; "MET_MOLE" ; \ 
+PROP-LIST PARAMNAME = GMENCN SETNO = 1 UNITROW = 0 BDBANK = ( "APV80 ENRTL-RK" 
+) \ \ PPVAL PARAMNAME2 = GMENCN 1 CID1A = H2O CID2A = "NA+" CID2B = "CL-" 
+VALUE = "APV80 ENRTL-RK" \ ? "STREAM-NAMES" ? ? STREAM MATERIAL F1 ? ; 
+"MET_MOLE" ; \ SUBSTREAM SSID = MIXED TEMP = 80. <22> <4> PRES = 2. <20> <3> 
+BASIS = "MASS-FRAC" FLOWBASE = MASS TOTFLOW = 1000. <-80> <3> MIXED-SPEC = TP 
+TOTAL = 1. <-3> <0> JUNK = 2 \ \ MOLE-FLOW SSID1 = MIXED CID = H2O FLOW = 
+0.93 <-3> <0> /  SSID1 = MIXED CID = NACL FLOW = 0.07 <-3> <0> \ ? STREAM 
+MATERIAL P1 ? ; "MET_MOLE" ; \ SUBSTREAM SSID = MIXED TEMP = 30. <22> <4> 
+PRES = 2. <20> <3> BASIS = "MASS-FRAC" FLOWBASE = MASS TOTFLOW = 1000. <-80> 
+<3> MIXED-SPEC = TP TOTAL = 1. <-89> <0> JUNK = 1 \ \ MOLE-FLOW SSID1 = MIXED 
+CID = H2O FLOW = 1. <-3> <0> \ ? BLOCK USER2 B1 ? ; "MET_MOLE" ; ; BLOCK ; @ 
+
+MDVAR 1400034841 32
+0 OPT1 0 -1 0 1 -50
+1 OPT2 0 -1 0 1 -50
+
+2 OPT3 0 -1 0 1 -50
+3 OPT4 0 -1 0 1 -50
+4 OPT5 0 -1 0 1 -50
+
+5 OPT6 0 -1 0 1 -50
+6 OPT7 0 -1 0 1 -50
+7 OPT8 0 -1 0 1 -50
+
+8 OPT9 0 -1 0 1 -50
+9 OPT10 0 -1 0 2 -50
+10 OPT11 0 -1 0 2 -50
+
+11 OPT12 0 -1 0 2 -50
+12 OPT13 0 -1 0 2 -50
+13 OPT14 0 -1 0 2 -50
+
+14 OPT15 0 -1 0 2 -50
+15 OPT16 0 -1 0 2 -50
+16 HFNUMBER 1 -1 0 1 -50
+
+17 HFLENGTH 1 -1 0 1 -50
+18 HFINNERD 1 -1 0 1 -50
+19 HFOUTERD 1 -1 0 1 -50
+
+20 HOUSEID 1 -1 0 1 -50
+21 HOUSEOD 1 -1 0 1 -50
+22 THERMCND 1 -1 0 1 -50
+
+23 POROSITY 1 -1 0 1 -50
+24 PORESIZE 1 -1 0 1 -50
+25 RE1 1 -1 0 2 -50
+
+26 RE2 1 -1 0 2 -50
+27 NU1 1 -1 0 2 -50
+28 NU2 1 -1 0 2 -50
+
+29 JM 1 -1 0 2 -50
+30 VAR1 1 -1 0 2 -50
+31 VAR2 1 -1 0 2 -50
+\ SUBROUTINE 
+USRMODEL = DCMD \ \ PARAM NINT = 16 NREAL = 16 NCHAR = 16 \ \ INT VALUE-LIST
+ = ( 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ) \ \ REAL RVALUE-LIST = ( 840 <0> <0> 
+0.3867 <0> <0> 0.00098 <0> <0> 0.00146 <0> <0> 0.06 <0> <0> 0.3 <0> <0> 
+0.6065 <0> <0> 0.7 <0> <0> 1.5E-007 <0> <0> 1.413588E-309 <0> <0> 
+1.413588E-309 <0> <0> 1.413588E-309 <0> <0> 1.413588E-309 <0> <0> 
+0.00814186598 <0> <0> 1.413588E-309 <0> <0> 1.413588E-309 <0> <0> ) \ \ CHAR 
+CHAR-LIST = ( "OPT1 (AM CALC.) | NUMBER OF TUBES" 
+"OPT2 (GET TEMP. PROFILE) | MODULE LENGTH [M]" 
+"OPT3 (GET MOD AND STREAM PARAMS.) | TUBE ID [M]" "OPT4 | TUBE OD [M]" 
+"OPT5 | SHELL ID [M]" "OPT6 | SHELL OD [M]" 
+"OPT7 | THERMAL CONDUCTIVITY [W/M-K]" "OPT8 | POROSITY" "OPT9 | PORERADIUS [M]" 
+"OPT10 | TUBE-SIDE RE" "OPT11 | TUBE-SIDE NU" "OPT12 | SHELL-SIDE RU" 
+"OPT13 | SHELL-SIDE NU" "OPT14 | AVERAGED PERMEATION FLUX [KG/M2-S]" 
+"OPT15 | MONITOR VARIABLE 1" "OPT16 | MONITOR VARIABLE 2" ) \ \ FLASH-SPECS 
+FLASH-STREAM = F2 KODE = TP \ \ FLASH-SPECS FLASH-STREAM = P2 KODE = TP \ ? 
+"EO-CONV-OPTI" ? \ DMO-PARAMS MODE = DEFAULT \ \ DMO-PARAMS MODE = SIMULATION 
+\ \ DMO-PARAMS MODE = "PARAMETER-ESTIMATION" \ \ DMO-PARAMS MODE = 
+RECONCILIATION \ \ DMO-PARAMS MODE = OPTIMIZATION \ \ LSSQP-PARAMS MODE-L = 
+DEFAULT \ \ LSSQP-PARAMS MODE-L = SIMULATION \ \ LSSQP-PARAMS MODE-L = 
+"PARAMETER-ESTIMATION" \ \ LSSQP-PARAMS MODE-L = RECONCILIATION \ \ 
+LSSQP-PARAMS MODE-L = OPTIMIZATION \ \ NSOLVE-PARAM NSOLVE-MODE = DEFAULT \ \ 
+NSOLVE-PARAM NSOLVE-MODE = SIMULATION \ \ NSOLVE-PARAM NSOLVE-MODE = 
+"PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE = DEFAULT \ \ XSLP-PARAMS 
+XSLP-MODE = SIMULATION \ \ XSLP-PARAMS XSLP-MODE = "PARAMETER-ESTIMATION" \ \ 
+XSLP-PARAMS XSLP-MODE = RECONCILIATION \ \ XSLP-PARAMS XSLP-MODE = 
+OPTIMIZATION \ ? REPORT "BLOCK-REPORT" ? ? REPORT "STREAM-REPOR" ? \ OPTIONS 
+MOLEFLOW = MOLEFLOW \ 
+
+ GRAPHICS_BACKUP
+PFS V 5.00
+$CONFIG
+paramdata APV80 ENRTL-RK
+paramdata APV80 VLE-IG
+paramdata APV80 VLE-RK
+paramdata APV80 VLE-HOC
+paramdata APV80 LLE-LIT
+paramdata APV80 LLE-ASPEN
+paramdata APV80 VLE-LIT
+paramdata APV80 BINARY
+paramdata APV80 EOS-LIT
+paramdata APV80 HENRY-AP
+paramdata APV80 SRK-ASPEN
+paramdata APV80 PC-SAFT
+paramdata APV80 POLYPCSF
+paramdata APV80 HYSYS
+purebank APV80 PURE25
+purebank APV80 AQUEOUS
+purebank APV80 SOLIDS
+purebank APV80 INORGANIC
+regdbank 1
+ftn_check 1
+autoblockid 0
+autostreamid 0
+showblockid 1
+showstreamid 1
+autoplacement 1
+grid 2
+gridresolution 0.100000
+scale 0
+blockprefix B
+labelscale 1.000000
+3DOn 1
+qwformat %.0f
+tempformat %.0f
+presformat %.0f
+flowformat %.0f
+strmqwformat %.0f
+vflowformat %.0f
+mflowformat %.0f
+vfracformat %.2f
+pseudobatch 1
+partial 1
+animation 1
+runanyway 0
+tooldrawvisible 0
+browserheight 7530
+browserwidth 14520
+browsertreewidth 6240
+polyplusenabled 1
+dynaplusenabled 1
+bfracenabled 1
+rtfenabled 1
+rspenabled 1
+initializeicarus 17
+pinchenabled 0
+linklimit 5000
+material_color 0
+material_style 0
+material_width 1
+material_termid  
+heat_color 0
+heat_style 2
+heat_width 1
+heat_termid Q
+work_color 0
+work_style 1
+work_width 1
+work_termid W
+connections_color 9
+connections_style 3
+connections_width 1
+connections_termid C
+measurements_color 4
+measurements_style 3
+measurements_width 1
+measurements_termid M
+displayeoconn 0
+displaycalcs 0
+displaytransfers 0
+displaymeas 0
+displaydesignspecs 0
+displaycalccons 0
+displaymeascons 0
+displayothercons 0
+displayeomeas 1
+displayeomeastype 2
+displayothermanipconn 0
+showeoviews 1
+eoautosave 1
+allow_system_userprops 0
+copy_estimation 1
+copy_retrieved 1
+purge_incomp_params 0
+set_default_biparams 0
+set_default_dataset1 0
+set_default_dataset0 1
+bestinput 0
+autosmrun 0
+genallpropset 0
+strmresformdefault 0
+roottype 1
+exchangerfile 1
+streamformat 1
+runsettingfile 1
+usermodelfile 1
+fortranfile 0
+allow_system_autoparam 1
+timeout 1000
+auto_evaluate 0
+customglobaldatapropset1 0 | Custom1 | * | %.2f | 0 | 6
+customglobaldatapropset2 0 | Custom2 | * | %.2f | 1 | 7
+customglobaldatapropset3 0 | Custom3 | * | %.2f | 2 | 8
+customglobaldatapropset4 0 | Custom4 | * | %.2f | 4 | 9
+customglobaldatapropset5 0 | Custom5 | * | %.2f | 5 | 10
+customglobaldatapropset6 0 | Custom6 | * | %.2f | 6 | 11
+economics_active 0
+submitdata dlopt "dcmd_dll.opt"
+#
+$_APWNSHELL_SETTINGS
+<CommonShellSettings xmlns="http://schemas.aspentech.com/xaml/presentation/visualisation/commonshell" xmlns:atapmaa="clr-namespace:AspenTech.AspenPlus.Modules.ApwnApplication;assembly=ApwnShell" xmlns:atapie="clr-namespace:AspenTech.AspenPlus.Infrastructure.Events;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:apmab="clr-namespace:AspenPlus.Modules.ApwnBrowser;assembly=ApwnShell" xmlns:cxv="http://schemas.aspentech.com/xaml/presentation/cxsviewmodel" xmlns:atapi="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure">
+  <CommonShellSettings.CurrentWorkspace>
+    <ShellWorkspace Layout="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;xamDockManager version=&quot;11.2.20112.2125&quot;&gt;&#xD;&#xA;  &lt;contentPanes&gt;&#xD;&#xA;    &lt;contentPane name=&quot;_AnonymousScreen1&quot; location=&quot;Document&quot; lastActivatedTime=&quot;2014-05-26T12:26:00.1574491Z&quot; /&gt;&#xD;&#xA;    &lt;contentPane name=&quot;FlowsheetScreenFactory&quot; location=&quot;Document&quot; lastActivatedTime=&quot;2014-05-26T12:21:13.8170714Z&quot; /&gt;&#xD;&#xA;    &lt;contentPane name=&quot;ModelLibraryScreenFactoryKey&quot; location=&quot;DockedBottom&quot; lastActivatedTime=&quot;2014-05-26T02:38:27.1680935Z&quot; /&gt;&#xD;&#xA;    &lt;contentPane name=&quot;DashBoardScreenFactoryKey&quot; location=&quot;DockedTop&quot; lastActivatedTime=&quot;2014-05-26T02:38:16.7834995Z&quot; visibility=&quot;Collapsed&quot; /&gt;&#xD;&#xA;  &lt;/contentPanes&gt;&#xD;&#xA;  &lt;panes&gt;&#xD;&#xA;    &lt;splitPane name=&quot;Zd6c4a3f7ab44467a8144f45101796164&quot; splitterOrientation=&quot;Vertical&quot; location=&quot;DockedBottom&quot;&gt;&#xD;&#xA;      &lt;contentPane name=&quot;ModelLibraryScreenFactoryKey&quot; /&gt;&#xD;&#xA;    &lt;/splitPane&gt;&#xD;&#xA;    &lt;splitPane name=&quot;Z07efa1e28a644f5a961d50a51a43cc42&quot; splitterOrientation=&quot;Vertical&quot; location=&quot;DockedTop&quot;&gt;&#xD;&#xA;      &lt;contentPane name=&quot;DashBoardScreenFactoryKey&quot; /&gt;&#xD;&#xA;    &lt;/splitPane&gt;&#xD;&#xA;  &lt;/panes&gt;&#xD;&#xA;  &lt;documents splitterOrientation=&quot;Vertical&quot;&gt;&#xD;&#xA;    &lt;splitPane name=&quot;Z71ca6745ffc841fda7448ef5c8c4022b&quot; splitterOrientation=&quot;Vertical&quot;&gt;&#xD;&#xA;      &lt;tabGroup name=&quot;Z5daa9ae56fc64956bf18bbc4053a3bfe&quot; selectedIndex=&quot;1&quot;&gt;&#xD;&#xA;        &lt;contentPane name=&quot;FlowsheetScreenFactory&quot; /&gt;&#xD;&#xA;        &lt;contentPane name=&quot;_AnonymousScreen1&quot; /&gt;&#xD;&#xA;      &lt;/tabGroup&gt;&#xD;&#xA;    &lt;/splitPane&gt;&#xD;&#xA;  &lt;/documents&gt;&#xD;&#xA;&lt;/xamDockManager&gt;" NavigationGroupToSelect="Simulation" IsNavigationPaneMinimized="False" IsRibbonMinimized="False">
+      <ShellWorkspace.Screens>
+        <WorkspaceScreenData PaneName="_AnonymousScreen1" ScreenFactoryKey="ApwnFormContentFactory">
+          <WorkspaceScreenData.ScreenSubject>
+            <atapmaa:ApwnFormScreenSubject Key="Setup" NavigationGroupKey="Simulation">
+              <atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+                <atapie:ShowFormEventArgs FormProgId="MMSetup.MMSetup_Setup" FormKey="Setup" Header="Setup" ResultsOnly="False" PathKey="Top.appModelV8.Setup">
+                  <atapie:ShowFormEventArgs.Parameters>
+                    <s:String assembly:Key="id">Setup</s:String>
+                    <s:String assembly:Key="main">Top.appModelV8.Setup</s:String>
+                  </atapie:ShowFormEventArgs.Parameters>
+                </atapie:ShowFormEventArgs>
+              </atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+              <atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+                <apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Setup" />
+              </atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+            </atapmaa:ApwnFormScreenSubject>
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <atapmaa:ApwnFormScreenState>
+              <atapmaa:ApwnFormScreenState.Parameters>
+                <cxv:CxvParameter Name="main" Value="Top.appModelV8.Setup" />
+                <cxv:CxvParameter Name="id" Value="Setup" />
+                <cxv:CxvParameter Name="extraComments_path" Value="Main.Comments" />
+                <cxv:CxvParameter Name="extraDescription_path" Value="Main.Input.DESCRIPTION" />
+                <cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" />
+                <cxv:CxvParameter Name="NotNeedName" Value="Global" />
+                <cxv:CxvParameter Name="NotNeedType" Value="Global" />
+                <cxv:CxvParameter Name="selected_tab" Value="tab1" />
+              </atapmaa:ApwnFormScreenState.Parameters>
+            </atapmaa:ApwnFormScreenState>
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="FlowsheetScreenFactory" ScreenFactoryKey="FlowsheetScreenFactory">
+          <WorkspaceScreenData.ScreenSubject>
+            <atapi:StringScreenSubject subject="{assembly:Null}" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" />
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState Zoom="1.6700009999999999" />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="ModelLibraryScreenFactoryKey" ScreenFactoryKey="ModelLibraryScreenFactoryKey">
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="DashBoardScreenFactoryKey" ScreenFactoryKey="ClosedScreenPlaceholder">
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+      </ShellWorkspace.Screens>
+    </ShellWorkspace>
+  </CommonShellSettings.CurrentWorkspace>
+  <CommonShellSettings.SavedWorkspaces>
+    <ShellWorkspaceFolder />
+  </CommonShellSettings.SavedWorkspaces>
+  <CommonShellSettings.NavigatorGroupWorkspaces>
+    <ShellWorkspace Name="Properties" Layout="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;xamDockManager version=&quot;11.2.20112.2125&quot;&gt;&#xD;&#xA;  &lt;contentPanes&gt;&#xD;&#xA;    &lt;contentPane name=&quot;StartPageScreenFactory&quot; location=&quot;Document&quot; lastActivatedTime=&quot;2014-05-26T11:11:10.6176621Z&quot; /&gt;&#xD;&#xA;  &lt;/contentPanes&gt;&#xD;&#xA;  &lt;documents splitterOrientation=&quot;Vertical&quot;&gt;&#xD;&#xA;    &lt;splitPane splitterOrientation=&quot;Vertical&quot;&gt;&#xD;&#xA;      &lt;tabGroup selectedIndex=&quot;0&quot;&gt;&#xD;&#xA;        &lt;contentPane name=&quot;StartPageScreenFactory&quot; /&gt;&#xD;&#xA;      &lt;/tabGroup&gt;&#xD;&#xA;    &lt;/splitPane&gt;&#xD;&#xA;  &lt;/documents&gt;&#xD;&#xA;&lt;/xamDockManager&gt;" NavigationGroupToSelect="Properties" IsNavigationPaneMinimized="False" IsRibbonMinimized="False">
+      <ShellWorkspace.Screens>
+        <WorkspaceScreenData PaneName="StartPageScreenFactory" ScreenFactoryKey="StartPageScreenFactory">
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+      </ShellWorkspace.Screens>
+    </ShellWorkspace>
+  </CommonShellSettings.NavigatorGroupWorkspaces>
+</CommonShellSettings>
+$_END_APWNSHELL_SETTINGS
+#
+PFSVData
+# of PFS Objects = 6
+SIZE 0.103295 4.60478 -2.29967 0.994893
+BLOCK
+ID: B1
+Version: 1
+ICON: "BLOCK"
+Flag 0
+Section GLOBAL
+At 2.500000 -1.200000
+Label At 0.000000 0.000000
+Scale 1.000000 Modifier 0
+STREAM
+ID: F1
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 1
+At 0.103295 -0.103295
+Label At 0.971705 -0.548353
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 0.103295 -0.103295 0
+x x 1.075000 -0.103295 0
+y y 1.075000 -1.200000 0
+x x 1.850000 -1.200000 0
+t l 2.050000 -1.200000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: P1
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 1
+At 0.103295 -2.299670
+Label At 1.196593 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 0.103295 -2.299670 0
+x x 2.496481 -2.299670 0
+y y 2.496481 -1.804692 0
+t d 2.496481 -1.604692 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: F2
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 2
+At 4.604778 -0.005437
+Label At -0.829778 -0.597282
+ROUTE 0 0
+r l 4.604778 -0.005437 0
+x y 3.775000 -0.005437 0
+y x 3.775000 -1.200000 0
+x 0 3.150000 -1.200000 0
+t r 2.950000 -1.200000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: P2
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 4.604778 0.994893
+Label At -1.052389 0.000000
+ROUTE 0 0
+r l 4.604778 0.994893 0
+x y 2.500000 0.994893 0
+y 0 2.500000 -0.598827 0
+t u 2.500000 -0.798827 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+LEGEND
+Version: 2
+Dim: -3.91977 -3.2 -3.10235 -3.35896
+Size: 0.0108666
+Font: 1 0 =Times New Roman
+# of PFS Objects = 0
+VIEWPORT -4.167272 6.547182 1.226737 -3.706693
+LAYOUT
+TableFormat 1
+Pages 1 1 1 1
+PAGESETUP
+PAPERSIZE 1
+PAPERSOURCE 1
+ORIENTATION 1
+PRINTPAGENO 1 1
+LEFTMARGIN 0.5"
+RIGHTMARGIN 0.5"
+TOPMARGIN 0.5"
+BOTTOMMARGIN 0.5"
+VISIBILITY 0.030000
+PFDFLAG 255 255
+PFDMODE 0
+SCALE 0.010867
