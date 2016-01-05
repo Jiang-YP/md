@@ -4,8 +4,10 @@ rem
 echo.
 echo 1 - Copying the sources from \dev to \src
 cd ..
-cd src
-xcopy ..\dev\*.f* /y /q
+md tmp
+xcopy .\dev\*.f* .\tmp\ /y /q
+xcopy .\src\*.f* .\tmp\ /y /q
+cd tmp
 echo.
 echo 2 - Beginning to compile files
 echo.
@@ -32,27 +34,12 @@ call aspcomp dcmd.f
 echo.
 echo Compilation finished ...
 echo.
-echo 3 - Moving object files to object folder
+echo 3 - Linking the object files into dynamic linked library
 echo.
-xcopy *.obj obj\ /y /q
-xcopy *.mod obj\ /y /q
-del *.obj
-del *.mod
-echo Moving finished ...
-echo.
-echo 4 - Linking the object files into dynamic linked library
-echo.
-cd obj
 call asplink dcmd
 echo.
-echo 5 - Copying dcmd.dll to the parent directory
-xcopy dcmd.dll ..\ /y /q
+echo 4 - Copying dcmd.dll to the binary directory
 cd ..
-xcopy dcmd.dll ..\bin /y /q
-del dcmd.dll
-del obj /q
-rd obj
-cd ..
-cd etc
+xcopy .\tmp\dcmd.dll .\bin\ /y /q
 echo.
-echo Finished
+echo Finished!

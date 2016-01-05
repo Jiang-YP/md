@@ -35,7 +35,7 @@
      1  4HVAR1,  4H    ,  4H    ,  4H    ,  1,  -1,  0,  2,
      1  4HVAR2,  4H    ,  4H    ,  4H    ,  1,  -1,  0,  2/
 
-      DATA IVRSN/1400034841/
+      DATA IVRSN/1451940121/
       NVARS = IPARAM_NVARS
       IF(IROW .EQ. 0) THEN
           MDVAR=IVRSN

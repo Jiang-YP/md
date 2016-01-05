@@ -184,16 +184,16 @@ C     Check whether are there two outlet streams
       END IF
 C     Get streams from Aspen Plus
       DO ISIDE = 1, 2
-        CALL SHS_CPACK(SIN(1,ISIDE), NCP, IDX, X, FLOW)
-C       Get mass flowrates, [kg/s]
-C       which is the product of molar flowrate and molecular weight
-        COM_SIN(ISIDE)%W = SIN(NCOMP_NCC+1,ISIDE)*
-     +                        SIN(NCOMP_NCC+9,ISIDE)
+C       Get mass flowrates = (molar flowrate)*(molecular weight), [kg/s]
+        COM_SIN(ISIDE)%W = SIN(NCOMP_NCC+1,ISIDE)*SIN(NCOMP_NCC+9,ISIDE)
 C       Get temperature, [K]
         COM_SIN(ISIDE)%T = SIN(NCOMP_NCC+2,ISIDE)
 C       Get pressure, [Pa]
         COM_SIN(ISIDE)%P = SIN(NCOMP_NCC+3,ISIDE)
+C       Get density of liquid mixture
+        COM_SIN(ISIDE)%PhysProp%rho = SIN(NCOMP_NCC+8,ISIDE) 
 C       Get viscosity of liquid mixture, [Pa-s]
+        CALL SHS_CPACK(SIN(1,ISIDE), NCP, IDX, X, FLOW)
         CALL PPMON_VISCL(SIN(NCOMP_NCC+2,ISIDE), SIN(NCOMP_NCC+3,ISIDE),
      +                   X, NCP, IDX, NBOPST, KDIAG, 
      +                   COM_SIN(ISIDE)%PhysProp%mu, IERR)
@@ -219,12 +219,10 @@ C       Refer to "Aspen Properties: toolkit manual" P57
           WRITE(USER_NHSTRY, *) 'ERROR EVALUATING SPECIFIC HEAT'
           IFAIL = 1
         END IF
-C       Get density of liquid mixture
-        COM_SIN(ISIDE)%PhysProp%rho = SIN(NCOMP_NCC+8,ISIDE)       
       END DO
 
 C     Run the simulation
-      call CalcSOUT
+!      call CalcSOUT
 
 C     Fill user2 unit with resulted parameters
 C     Set integer variables
@@ -305,8 +303,8 @@ C     Set real variables
       END IF
 
 C     Set outlet streams
-      DO ISIDE = 1, 2
-        SOUT(ISIDE) = SIN(ISIDE)
+	SOUT = SIN
+!      DO ISIDE = 1, 2
 !C       Water molar flow, [kmol/s]      
 !        SOUT(1,ISIDE) = COM_SOUT(ISIDE)%MolarFlow%H2O
 !C       Other components' molar flow, [kmol/s]
@@ -319,8 +317,8 @@ C     Set outlet streams
 !        SOUT(NCOMP_NCC+2,ISIDE) = COM_SOUT(ISIDE)%T
 !C       Pressure, [Pa]
 !        SOUT(NCOMP_NCC+3,ISIDE) = COM_SOUT(ISIDE)%P
-      END DO
-      
+!      END DO
+      RETURN
       END
 
 
