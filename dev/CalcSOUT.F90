@@ -5,11 +5,11 @@ subroutine CalcSOUT(ncomp, nmate, influents)
   real*8, dimension(ncomp,nmate), intent(in) :: influents
   integer :: i, j
 
-  open(13, file="tmp_CalcSOUT.log")
-  write(13, *) "Invoking CalcSOUT()"
-  do i = 1, ncomp
-    write(13, *) (influents(i,j), j = 1, nmate)
-  end do
+!  open(13, file="tmp_CalcSOUT.log")
+!  write(13, *) "Invoking CalcSOUT()"
+!  do i = 1, ncomp
+!    write(13, *) (influents(i,j), j = 1, nmate)
+!  end do
 
 ! Set the COM_SIN  
   do i = 1, 2
@@ -37,10 +37,10 @@ subroutine CalcSOUT(ncomp, nmate, influents)
 ! Calculate the temperature profiles in both lumen and shell sides  
   call CalcProfile(COM_SIN(1), COM_SIN(2), COM_SOUT(1), COM_SOUT(2))
 
-  write(13, "(A5, A12, A7)") "ISIDE", "Mass flow", "Temp."
-  write(13, "(I5, E12.4, F7.2)") ((I, COM_SIN(i)%W, COM_SIN(i)%T), i = 1, 2)
-  write(13, "(I5, E12.4, F7.2)") ((I, COM_SOUT(i)%W, COM_SOUT(i)%T), i = 1, 2)
-  close(13)  
+!  write(13, "(A5, A12, A7)") "ISIDE", "Mass flow", "Temp."
+!  write(13, "(I5, E12.4, F7.2)") ((I, COM_SIN(i)%W, COM_SIN(i)%T), i = 1, 2)
+!  write(13, "(I5, E12.4, F7.2)") ((I, COM_SOUT(i)%W, COM_SOUT(i)%T), i = 1, 2)
+!  close(13)  
 
 end subroutine
 

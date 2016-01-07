@@ -23,8 +23,8 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   real*8 :: kappa_shl, rho_shl, cp_shl, v_shl, alpha_shl, beta_shl, Pe_shl
   real*8 :: JM
 
-  open(12, file = "tmp_CalcProf.log")
-  write(12, *) "Invoking CalcProfile()" 
+!  open(12, file = "tmp_CalcProf.log")
+!  write(12, *) "Invoking CalcProfile()" 
   
   ! Retrieve the geometrics of hollow fibers
   a = COM_MOD%ID1/two
@@ -76,8 +76,8 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
     
     ! Check for converge
     if (IsRelDiff(AvgSq, PrevIterAvgSq, 1.d-6)) then
-      write(12, *) "Averaged heat flux is convergent."
-      write(12, "(e12.4)") AvgSq
+!      write(12, *) "Averaged heat flux is convergent."
+!      write(12, "(e12.4)") AvgSq
       exit
     else
 !      write(12, "(A, I5, A, E12.4)" ) "Iteration # ", IterNum, "  Averaged heat flux: ", AvgSq
@@ -157,13 +157,13 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   LumenOUT%P = LumenIN%P
   ShellOUT%P = ShellIN%P  
 
-  write(12, "(A, 2F7.2)") "Outlet temperatures: ", LumenOUT%T, ShellOUT%T
-  write(12, "(A, E12.4, A)") "Permeation molar flux: ", COM_MOD%AM*DAVG(Fw)/b, " [kmol/m2-s]"
-  write(12, "(A, E12.4)") "Water molar flow of lumen-side influent: ", LumenIN%MolarFlow%H2O
-  write(12, "(A, E12.4)") "Water molar flow of shell-side influent: ", ShellIN%MolarFlow%H2O
-  write(12, "(A, 4E12.4)") "NaCl molar flow of lumen-side influent: ", LumenIN%MolarFlow%NaCl, LumenIN%MolarFlow%Na, LumenIN%MolarFlow%NaClS, LumenIN%MolarFlow%Cl
-  write(12, "(A, 4E12.4)") "NaCl molar flow of shell-side influent: ", ShellIN%MolarFlow%NaCl, ShellIN%MolarFlow%Na, ShellIN%MolarFlow%NaClS, ShellIN%MolarFlow%Cl
-  close(12)
+!  write(12, "(A, 2F7.2)") "Outlet temperatures: ", LumenOUT%T, ShellOUT%T
+!  write(12, "(A, E12.4, A)") "Permeation molar flux: ", COM_MOD%AM*DAVG(Fw)/b, " [kmol/m2-s]"
+!  write(12, "(A, E12.4)") "Water molar flow of lumen-side influent: ", LumenIN%MolarFlow%H2O
+!  write(12, "(A, E12.4)") "Water molar flow of shell-side influent: ", ShellIN%MolarFlow%H2O
+!  write(12, "(A, 4E12.4)") "NaCl molar flow of lumen-side influent: ", LumenIN%MolarFlow%NaCl, LumenIN%MolarFlow%Na, LumenIN%MolarFlow%NaClS, LumenIN%MolarFlow%Cl
+!  write(12, "(A, 4E12.4)") "NaCl molar flow of shell-side influent: ", ShellIN%MolarFlow%NaCl, ShellIN%MolarFlow%Na, ShellIN%MolarFlow%NaClS, ShellIN%MolarFlow%Cl
+!  close(12)
 
   contains
   

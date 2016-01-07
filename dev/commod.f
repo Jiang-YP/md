@@ -110,9 +110,9 @@ c     Define common variables
 c     Initiate module parameters
       subroutine InitMOD(mod)
         type(ModuleParam), intent(inout) :: mod
-	  open(11, file="tmp_InitMOD.log")
-	  write(11, *) "Invoking InitMOD()"
-	  close(11)
+!	  open(11, file="tmp_InitMOD.log")
+!	  write(11, *) "Invoking InitMOD()"
+!	  close(11)
         mod%NUM = zero
         mod%LEN = zero
         mod%ID1 = zero
@@ -139,9 +139,9 @@ c     Initiate module parameters
 c     Initiate stream
       subroutine InitStream(stm)
         type(StreamProp), intent(inout):: stm
-	  open(11, file="tmp_InitStream.log")
-	  write(11, *) "Invoking InitStream()"
-	  close(11)
+!	  open(11, file="tmp_InitStream.log")
+!	  write(11, *) "Invoking InitStream()"
+!	  close(11)
         stm%ID = 'xxxxx'
         stm%W = zero
         stm%T = zero
@@ -175,9 +175,9 @@ c     shell-side inner diameter
 c       Define the local variables
 c       option for inner diameter
         integer*4 :: IDopt
-	  open(11, file="tmp_CalcModule.log")
-	  write(11, *) "Invoking CalcModule()"
-	  close(11)
+!	  open(11, file="tmp_CalcModule.log")
+!	  write(11, *) "Invoking CalcModule()"
+!	  close(11)
 c       Calculate the thickness    
         MOD%THK = (MOD%OD1 - MOD%ID1) / TWO
 c       Calculate the membrane area based on inner diameter
@@ -223,9 +223,9 @@ c       flowing cross section area
         real*8, intent(in) :: CSA  
 c       Define local variables
         real*8 :: VolFlow
-        open(11, file="tmp_CalcStream.log")
-	  write(11, *) "Invoking CalcModule()"
-	  close(11)
+!        open(11, file="tmp_CalcStream.log")
+!	  write(11, *) "Invoking CalcModule()"
+!	  close(11)
         VolFlow = Stream%W / Stream%PhysProp%rho ! Volume flow, [m3/s]
         Stream%u = VolFlow / CSA
         Stream%G = Stream%u * Stream%PhysProp%rho
@@ -300,9 +300,9 @@ c     Grid the domain
         integer :: xPointNum, xSectionNum
         integer :: i
         real*8, allocatable, dimension(:) :: xSpan
-	  open(11, file="tmp_Grid1D.log")
-	  write(11, *) "Invoking Grid1D()"
-	  close(11)
+!	  open(11, file="tmp_Grid1D.log")
+!	  write(11, *) "Invoking Grid1D()"
+!	  close(11)
 c       Get the x-dimensional size
         xPointNum = size(A, dim=1)
         xSectionNum = xPointNum-1
