@@ -3,7 +3,7 @@ C     distillation in a hollow fiber membrane module
 C
 C     Developed by Guan Guoqiang @ SCUT, Guangzhou, China
 C
-C     Revision 2.0(0221)
+C     Revision 2.1(16022), code alias: boiler
 C
 C     User Unit Operation Model (or Report) Subroutine for USER2
 C
@@ -19,7 +19,9 @@ C     Invoke the common module in commod.f to define global variables
       use CommonDef
 C      
       IMPLICIT NONE
-C
+C	Use Aspen build-in Terminal File Writer Utility to show some message
+C	on the control panel
+!#include "dms_maxwrt.cmn"
 C     Include files to pass additional varibles via COMMONs
 C     Pass USER_NHSRY
 #include "ppexec_user.cmn"
@@ -84,6 +86,8 @@ C     OPT2 = 1 - export the temperature profile into the data files
         WRITE(USER_NHSTRY, *) 'ERROR FETCHING RUNNING OPTION 2'
         IFAIL = 1
       END IF
+C     Option for exporting the data files for debugging in vs project
+C     OPT3 = 1 - export temporary files
       IERR = USRUTL_GET_INT_PARAM('OPT3', INDEX, COM_OPT(3))
       IF (IERR .NE. 0) THEN
         WRITE(USER_NHSTRY, *) 'ERROR FETCHING RUNNING OPTION 3'
@@ -222,7 +226,7 @@ C       Refer to "Aspen Properties: toolkit manual" P57
       END DO
 
 C     Run the simulation
-!      call CalcSOUT
+      call CalcSOUT
 
 C     Fill user2 unit with resulted parameters
 C     Set integer variables
@@ -303,21 +307,25 @@ C     Set real variables
       END IF
 
 C     Set outlet streams
-	SOUT = SIN
-!      DO ISIDE = 1, 2
-!C       Water molar flow, [kmol/s]      
-!        SOUT(1,ISIDE) = COM_SOUT(ISIDE)%MolarFlow%H2O
-!C       Other components' molar flow, [kmol/s]
-!        DO I = 2, NCOMP_NCC
-!          SOUT(I,ISIDE) = SIN(I,ISIDE)
-!        END DO
-!C       Total molar flow, [kmol/s]
-!        SOUT(NCOMP_NCC+1,ISIDE) = SUM(SOUT(1:NCOMP_NCC,ISIDE))
-!C       Temperature, [K]
-!        SOUT(NCOMP_NCC+2,ISIDE) = COM_SOUT(ISIDE)%T
-!C       Pressure, [Pa]
-!        SOUT(NCOMP_NCC+3,ISIDE) = COM_SOUT(ISIDE)%P
-!      END DO
+!	SOUT = SIN
+      DO ISIDE = 1, 2
+C       Water molar flow, [kmol/s]      
+        SOUT(1,ISIDE) = COM_SOUT(ISIDE)%MolarFlow%H2O
+C       Other components' molar flow, [kmol/s]
+        DO I = 2, NCOMP_NCC
+          SOUT(I,ISIDE) = SIN(I,ISIDE)
+        END DO
+C       Total molar flow, [kmol/s]
+        SOUT(NCOMP_NCC+1,ISIDE) = SUM(SOUT(1:NCOMP_NCC,ISIDE))
+C       Temperature, [K]
+        SOUT(NCOMP_NCC+2,ISIDE) = COM_SOUT(ISIDE)%T
+C       Pressure, [Pa]
+        SOUT(NCOMP_NCC+3,ISIDE) = COM_SOUT(ISIDE)%P
+      END DO
+
+!      WRITE(MAXWRT_MAXBUF, "(2f6.2)") 1, 2
+!      CALL DMS_WRTTRM(1)
+
       RETURN
       END
 

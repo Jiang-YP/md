@@ -1,7 +1,11 @@
 subroutine CalcSOUT
   use CommonDef
   use VaporConc
-  
+  integer :: i
+
+  open(13, file="tmp_CalcSOUT.log")
+  write(13, *) "Invoking CalcSOUT()"
+             
 ! Complete the rest parameters in global variable of COM_MOD 
   call CalcModule(COM_MOD)
 ! Complete the rest parameters in global stream variables 
@@ -17,7 +21,12 @@ subroutine CalcSOUT
   
 ! Calculate the temperature profiles in both lumen and shell sides  
   call CalcProfile(COM_SIN(1), COM_SIN(2), COM_SOUT(1), COM_SOUT(2))
-  
+
+  write(13, "(A5, A12, A7)") "ISIDE", "Mass flow", "Temp."
+  write(13, "(I5, E12.4, F7.2)") ((I, COM_SIN(i)%W, COM_SIN(i)%T), i = 1, 2)
+  write(13, "(I5, E12.4, F7.2)") ((I, COM_SOUT(i)%W, COM_SOUT(i)%T), i = 1, 2)
+  close(13)  
+
 end subroutine
 
 subroutine WriteMOD(DataFileName)

@@ -3,11 +3,10 @@ rem This is a batch processing file to compile all the needed source files into 
 rem
 echo.
 echo 1 - Copying the sources from \dev to \src
-cd ..
-md tmp
-xcopy .\dev\*.f* .\tmp\ /y /q
-xcopy .\src\*.f* .\tmp\ /y /q
-cd tmp
+md ..\tmp
+xcopy ..\dev\*.f* ..\tmp\ /y /q
+xcopy ..\src\*.f* ..\tmp\ /y /q
+cd ..\tmp
 echo.
 echo 2 - Beginning to compile files
 echo.
@@ -39,7 +38,9 @@ echo.
 call asplink dcmd
 echo.
 echo 4 - Copying dcmd.dll to the binary directory
-cd ..
-xcopy .\tmp\dcmd.dll .\bin\ /y /q
+xcopy ..\tmp\dcmd.dll ..\bin\ /y /q
+xcopy ..\tmp\dcmd.dll "D:\Works\AspenTech\Working Folders\Aspen Plus V7.3\20160105 md with Kim2014 model\" /y /q
+type ..\tmp\dcmd.ld
+cd ..\etc
 echo.
-echo Finished!
+echo 5 - Finished!

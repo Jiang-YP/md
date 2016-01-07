@@ -1,7 +1,7 @@
 subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   use CommonDef
   use toolkits
-  
+
   type(StreamProp), intent(in) :: LumenIN ! lumen-side inlet stream
   type(StreamProp), intent(in) :: ShellIN ! shell-side inlet stream
   type(StreamProp), intent(out) :: LumenOUT ! lumen-side outlet stream
@@ -9,6 +9,7 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   
   type(StreamProp) :: LumenStream(COM_RadialGridNum,COM_AxialGridNum)
   type(StreamProp) :: ShellStream(COM_RadialGridNum,COM_AxialGridNum)
+
   real*8 :: LumenRadialLoc(COM_RadialGridNum), LumenAxialLoc(COM_AxialGridNum)
   real*8 :: ShellRadialLoc(COM_RadialGridNum), ShellAxialLoc(COM_AxialGridNum)
   integer :: opt
@@ -21,6 +22,9 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   real*8 :: kappa_lmn, rho_lmn, cp_lmn, v_lmn, alpha_lmn, beta_lmn, Pe_lmn
   real*8 :: kappa_shl, rho_shl, cp_shl, v_shl, alpha_shl, beta_shl, Pe_shl
   real*8 :: JM
+
+  open(12, file = "tmp_CalcProf.log")
+  write(12, *) "Invoking CalcProfile()" 
   
   ! Retrieve the geometrics of hollow fibers
   a = COM_MOD%ID1/two
@@ -29,10 +33,26 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   sigma = one/dsqrt(COM_MOD%PHI)
       
   ! Grid the location arrays
-  call Grid1D(zero, one, LumenRadialLoc, opt)
-  call Grid1D(zero, one, LumenAxialLoc, opt)
-  call Grid1D(one, sigma, ShellRadialLoc, opt)
-  call Grid1D(zero, one, ShellAxialLoc, opt)
+!  call Grid1D(zero, one, LumenRadialLoc, opt)
+  LumenRadialLoc(1) = zero
+  do i=2, COM_RadialGridNum
+    LumenRadialLoc(i) = LumenRadialLoc(i-1)+(one-zero)/(COM_RadialGridNum-1)
+  end do
+!  call Grid1D(zero, one, LumenAxialLoc, opt)
+  LumenAxialLoc(1) = zero
+  do i=2, COM_AxialGridNum
+    LumenAxialLoc(i) = LumenAxialLoc(i-1)+(one-zero)/(COM_AxialGridNum-1)
+  end do
+!  call Grid1D(one, sigma, ShellRadialLoc, opt)
+  ShellRadialLoc(1) = one
+  do i=2, COM_RadialGridNum
+    ShellRadialLoc(i) = ShellRadialLoc(i-1)+(sigma-one)/(COM_RadialGridNum-1)
+  end do
+!  call Grid1D(zero, one, ShellAxialLoc, opt)
+  ShellAxialLoc(1) = zero
+  do i=2, COM_AxialGridNum
+    ShellAxialLoc(i) = ShellAxialLoc(i-1)+(one-zero)/(COM_AxialGridNum-1)
+  end do
   
   ! Initiate the flow field
   do j = 1, COM_AxialGridNum
@@ -42,7 +62,6 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
     end do
   end do
 
-  
   PrevIterAvgSq = zero
   do IterNum = 1, MaxIterNum
     ! Calculate the local heat and mass transfer rate per unit length
@@ -57,38 +76,44 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
     
     ! Check for converge
     if (IsRelDiff(AvgSq, PrevIterAvgSq, 1.d-6)) then
+      write(12, *) "Averaged heat flux is convergent."
+      write(12, "(e12.4)") AvgSq
       exit
     else
+!      write(12, "(A, I5, A, E12.4)" ) "Iteration # ", IterNum, "  Averaged heat flux: ", AvgSq
       PrevIterAvgSq = AvgSq
     end if
-    
+
     ! Calculate the temperature changes in both lumen and shell sides
-    ! Retrive the averaged thermal conductivity, density, specific heat and velocity
-    ! of the lumen-side stream along the central line
+    ! Retrive the averaged thermal conductivity, density, specific heat and velocity of the lumen-side stream along the central line
     kappa_lmn = DAVG(LumenStream(1,:)%PhysProp%KM)
     rho_lmn = DAVG(LumenStream(1,:)%PhysProp%rho)
     cp_lmn = DAVG(LumenStream(1,:)%PhysProp%cp)
     v_lmn = DAVG(LumenStream(1,:)%u)
-    ! Retrive the averaged thermal conductivity, density, specific heat and velocity
-    ! of the shell-side stream along the boundary line
+    ! Retrive the averaged thermal conductivity, density, specific heat and velocity of the shell-side stream along the boundary line
     kappa_shl = DAVG(ShellStream(COM_RadialGridNum,:)%PhysProp%KM)
     rho_shl = DAVG(ShellStream(COM_RadialGridNum,:)%PhysProp%rho)
     cp_shl = DAVG(ShellStream(COM_RadialGridNum,:)%PhysProp%cp)
     v_shl = DAVG(ShellStream(COM_RadialGridNum,:)%u) ! the average bulk speed
     v_shl = v_shl/(sigma**two-one) ! the average outer speed Eq.(21)
+!    write(12, "(A, 2E12.4)") "Velocity ", v_lmn, v_shl
     ! Calculate the thermal diffusivity in both lumen and shell sides
     alpha_lmn = alpha(kappa_lmn, rho_lmn, cp_lmn)
     alpha_shl = alpha(kappa_shl, rho_shl, cp_shl)
+!    write(12, "(A, 2E12.4)") "Thermal diffusivities: ", alpha_lmn, alpha_shl
     ! Calculate the Peclet numbers in both lumen and shell sides
     Pe_lmn = Pe(v_lmn, L, alpha_lmn)
     Pe_shl = Pe(v_shl, L, alpha_shl)
+!    write(12, "(A, 2E12.4)") "Pelect numbers: ", Pe_lmn, Pe_shl
     ! Calculate the beta values in both lumen and shell sides
     beta_lmn = Pe_lmn*(a/L)**two ! Eq.(12)
     PackEffect = one/(sigma**four*dlog(sigma**four)+four*sigma**two-three*sigma**four-one) ! Eq.(20)
     beta_shl = Pe_shl*(b/L)**two*PackEffect*(sigma**two-one) ! Eq.(24)
+!    write(12, "(A, 2E12.4)") "Eeta values: ", beta_lmn, beta_shl
     ! Calculate the temperature differences in both lumen and shell sides
     dT_lmn = four*AvgSq/kappa_lmn/beta_lmn 
-    dT_shl = four*AvgSq/kappa_shl/beta_shl 
+    dT_shl = four*AvgSq/kappa_shl/beta_shl
+!    write(12, "(A, 2E12.4)") "Temperature differences: ", dT_lmn, dT_shl 
     
     ! Calculate the temperature profile
     do j = 1, COM_AxialGridNum
@@ -131,7 +156,11 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   ShellOUT%W = ShellIN%W-COM_MOD%AM*COM_MOD%Performance%JM
   LumenOUT%P = LumenIN%P
   ShellOUT%P = ShellIN%P  
-  
+
+  write(12, *) "Results have been exported. Outlet temperatures as "
+  write(12, "(2E9.2)") LumenOUT%T, ShellOUT%T
+  close(12)
+
   contains
   
   real(8) function G(xi) ! Eq.(A.26)

@@ -28,6 +28,8 @@
         call ReadMOD('tmp_MOD.txt')
         ! get feeding streams
         call ReadStream('tmp_stream.txt')
+
+	  call CalcModule(COM_MOD)
         
         S1 = COM_SIN(1)
         S2 = COM_SIN(2)
@@ -197,10 +199,10 @@
       call dqk15(g, a, b, result, abserr, resabs, resasc)
 !     output the results
       write(*, *) "Integral of f(x)=SIN(x) for x=0..pi/2"
-      write(*, '(A40, F6.4)') "Known result of above integral: ", 1.0
-      write(*, '(A40, F6.4)') "Calculated result of above integral: ", 
+      write(*, '(A40, F7.4)') "Known result of above integral: ", 1.0
+      write(*, '(A40, F7.4)') "Calculated result of above integral: ", 
      &                          result
-      write(*, '(A40, F6.4)') "Relative error: ", (1.0-result)/1.0
+      write(*, '(A40, F7.4)') "Relative error: ", (1.0-result)/1.0
 
 
       pause

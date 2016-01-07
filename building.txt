@@ -1,7 +1,8 @@
 Prerequisites:
- * Intel Visual Fortran v11.1
+ * Visual Studio 2010 Professional
+ * Parallel Studio XE with Intel Compiler XE v12.0 Update 5
  * AspenOne V7.3 (which provides a script to compile and link the required files)
-Building:
- ./etc
+Building script locates at:
+ ./etc/autocomp.bat (required "IA-32 visual studio 2010 mode" and "Aspen Plus V7.3 Simulation Engine")
 More info:
  ./doc
