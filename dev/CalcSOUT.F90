@@ -1,11 +1,26 @@
-subroutine CalcSOUT
+subroutine CalcSOUT(ncomp, nmate, influents)
   use CommonDef
   use VaporConc
-  integer :: i
+  integer, intent(in) :: ncomp, nmate
+  real*8, dimension(ncomp,nmate), intent(in) :: influents
+  integer :: i, j
 
   open(13, file="tmp_CalcSOUT.log")
   write(13, *) "Invoking CalcSOUT()"
-             
+  do i = 1, ncomp
+    write(13, *) (influents(i,j), j = 1, nmate)
+  end do
+
+! Set the COM_SIN  
+  do i = 1, 2
+!   Molar flow
+    COM_SIN(i)%MolarFlow%H2O   = influents(1,i)
+    COM_SIN(i)%MolarFlow%NaCl  = influents(2,i)
+    COM_SIN(i)%MolarFlow%Na    = influents(3,i)
+    COM_SIN(i)%MolarFlow%NaClS = influents(4,i)
+    COM_SIN(i)%MolarFlow%Cl    = influents(5,i)
+  end do
+
 ! Complete the rest parameters in global variable of COM_MOD 
   call CalcModule(COM_MOD)
 ! Complete the rest parameters in global stream variables 

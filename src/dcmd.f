@@ -21,7 +21,7 @@ C
       IMPLICIT NONE
 C	Use Aspen build-in Terminal File Writer Utility to show some message
 C	on the control panel
-!#include "dms_maxwrt.cmn"
+#include "dms_maxwrt.cmn"
 C     Include files to pass additional varibles via COMMONs
 C     Pass USER_NHSRY
 #include "ppexec_user.cmn"
@@ -226,7 +226,7 @@ C       Refer to "Aspen Properties: toolkit manual" P57
       END DO
 
 C     Run the simulation
-      call CalcSOUT
+      call CalcSOUT(NTOT, NMATI, SIN)
 
 C     Fill user2 unit with resulted parameters
 C     Set integer variables
@@ -323,8 +323,9 @@ C       Pressure, [Pa]
         SOUT(NCOMP_NCC+3,ISIDE) = COM_SOUT(ISIDE)%P
       END DO
 
-!      WRITE(MAXWRT_MAXBUF, "(2f6.2)") 1, 2
-!      CALL DMS_WRTTRM(1)
+      WRITE(MAXWRT_MAXBUF, "(2E12.4)") (COM_SOUT(ISIDE)%MolarFlow%H2O, 
+     +                                   ISIDE = 1, 2)
+      CALL DMS_WRTTRM(1)
 
       RETURN
       END

@@ -157,8 +157,12 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   LumenOUT%P = LumenIN%P
   ShellOUT%P = ShellIN%P  
 
-  write(12, *) "Results have been exported. Outlet temperatures as "
-  write(12, "(2E9.2)") LumenOUT%T, ShellOUT%T
+  write(12, "(A, 2F7.2)") "Outlet temperatures: ", LumenOUT%T, ShellOUT%T
+  write(12, "(A, E12.4, A)") "Permeation molar flux: ", COM_MOD%AM*DAVG(Fw)/b, " [kmol/m2-s]"
+  write(12, "(A, E12.4)") "Water molar flow of lumen-side influent: ", LumenIN%MolarFlow%H2O
+  write(12, "(A, E12.4)") "Water molar flow of shell-side influent: ", ShellIN%MolarFlow%H2O
+  write(12, "(A, 4E12.4)") "NaCl molar flow of lumen-side influent: ", LumenIN%MolarFlow%NaCl, LumenIN%MolarFlow%Na, LumenIN%MolarFlow%NaClS, LumenIN%MolarFlow%Cl
+  write(12, "(A, 4E12.4)") "NaCl molar flow of shell-side influent: ", ShellIN%MolarFlow%NaCl, ShellIN%MolarFlow%Na, ShellIN%MolarFlow%NaClS, ShellIN%MolarFlow%Cl
   close(12)
 
   contains

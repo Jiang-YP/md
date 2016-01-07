@@ -30,7 +30,7 @@ C       Membrane pore radius
       
 c     Define the composition
       type Composition
-        real*8 :: H2O, NaCl
+        real*8 :: H2O, NaCl, Na, NaClS, Cl
       end type Composition  
 
 c     Define the performance of MD module
@@ -160,8 +160,11 @@ c     Initiate stream
         stm%PhysProp%PoreRadius = zero
         stm%MassFrac%H2O = zero
         stm%MassFrac%NaCl = zero
-        stm%MolarFlow%H2O = zero
-        stm%MolarFlow%NaCl = zero    
+        stm%MolarFlow%H2O   = zero
+        stm%MolarFlow%NaCl  = zero    
+        stm%MolarFlow%Na    = zero
+        stm%MolarFlow%NaClS = zero
+        stm%MolarFlow%Cl    = zero
       end subroutine
 
 c     Calculate the following values in the variable of module:
