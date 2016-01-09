@@ -1,0 +1,300 @@
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"commod.obj" "commod.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"mdvar.obj" "mdvar.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"d1mach.obj" "d1mach.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dqk15.obj" "dqk15.f" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"property.obj" "property.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"localflux.obj" "localflux.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"toolkits.obj" "toolkits.f90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcProf.obj" "CalcProf.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c  /free   -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"CalcSOUT.obj" "CalcSOUT.F90" 
+ASPCOMP: Using compiler C:\Program Files\Intel\ComposerXE-2011\bin\ia32\ifort.exe  
+ifort.exe /nologo /c     -DAWINNTN -DWIN32 -I. "-IC:\Program Files\AspenTech\APrSystem V7.3\Engine\commons" "-IC:\Program Files\AspenTech\Aspen Plus V7.3\Engine\\commons"      /fpp /Qsave /iface:cvf /MD -object:"dcmd.obj" "dcmd.f" 
