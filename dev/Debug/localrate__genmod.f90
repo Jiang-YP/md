@@ -1,0 +1,11 @@
+        !COMPILER-GENERATED INTERFACE MODULE: Thu Jan 07 16:05:45 2016
+        MODULE LOCALRATE__genmod
+          INTERFACE 
+            SUBROUTINE LOCALRATE(TA,TB,FW,SQ)
+              REAL(KIND=8), INTENT(IN) :: TA
+              REAL(KIND=8), INTENT(IN) :: TB
+              REAL(KIND=8), INTENT(OUT) :: FW
+              REAL(KIND=8), INTENT(OUT) :: SQ
+            END SUBROUTINE LOCALRATE
+          END INTERFACE 
+        END MODULE LOCALRATE__genmod
