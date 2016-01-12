@@ -29,6 +29,9 @@
         ! get feeding streams
         call ReadStream(stm_def_file)
        
+        call CalcModule(COM_MOD)
+        call CalcStream(COM_MOD, COM_SIN)
+               
         S1 = COM_SIN(1)
         S2 = COM_SIN(2)
         call CalcProfile(S1, S2, S3, S4)

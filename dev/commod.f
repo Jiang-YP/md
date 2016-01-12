@@ -222,20 +222,32 @@ c           = 2                             ID+THK
         end select
       end function
       
-      subroutine CalcStream(Stream, CSA)
+      subroutine CalcStream(mod, stm)
 c       Calculate the mass flowing flux and Reynolds number
-        type(StreamProp), intent(inout) :: Stream
-c       flowing cross section area
-        real*8, intent(in) :: CSA  
+        type(ModuleParam), intent(in) :: mod
+        type(StreamProp), dimension(:), intent(inout) :: stm
 c       Define local variables
-        real*8 :: VolFlow
+        real*8 :: VolFlow, Length, csa(2), wc(2)
+        integer :: NumStream, is
 !        open(11, file="tmp_CalcStream.log")
 !	  write(11, *) "Invoking CalcModule()"
 !	  close(11)
-        VolFlow = Stream%W / Stream%PhysProp%rho ! Volume flow, [m3/s]
-        Stream%u = VolFlow / CSA
-        Stream%G = Stream%u * Stream%PhysProp%rho
-        Stream%Re = Re(Stream%G, EquivDiam(CSA), Stream%PhysProp%mu)
+        NumStream = size(stm)
+
+        csa(1) = mod%CSA1
+        csa(2) = mod%CSA2
+        wc(1) = mod%NUM * mod%ID1 * PI
+        wc(2) = mod%NUM * mod%OD1 * PI + PI * mod%ID2
+
+        do is = 1, NumStream
+c         Volume flow, [m3/s]
+          VolFlow = stm(is)%W / stm(is)%PhysProp%rho
+          stm(is)%u = VolFlow/csa(is)
+          stm(is)%G = stm(is)%u * stm(is)%PhysProp%rho
+          Length = HydraDiam(csa(is), wc(is))
+          stm(is)%Re = Re(stm(is)%G, Length, stm(is)%PhysProp%mu)
+        end do
+
       end subroutine  
       
       real*8 function EquivDiam(CSA)
@@ -245,6 +257,14 @@ c       (ie, diameter of cycle with the same area)
         EquivDiam = DSQRT(CSA * FOUR / PI)
       end function
       
+      real*8 function HydraDiam(CSA, WC)
+c       Calculate the hydraulic diameter
+c       (ie, 4 times of the quotient of cross-section area, CSA,
+c        and wetting circumference, WC)
+        real*8, intent(in) :: CSA, WC
+        HydraDiam = four*CSA/WC
+      end function
+
 c     Calculate the Reynolds number based on the given mass flux, length, 
 c     and viscosity
       real(8) function Re(G, D, mu)

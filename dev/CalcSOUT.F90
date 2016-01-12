@@ -21,11 +21,10 @@ subroutine CalcSOUT(ncomp, nmate, influents)
     COM_SIN(i)%MolarFlow%Cl    = influents(5,i)
   end do
 
-! Complete the rest parameters in global variable of COM_MOD 
+! Calculate the rest parameters in global variable of COM_MOD 
   call CalcModule(COM_MOD)
-! Complete the rest parameters in global stream variables 
-  call CalcStream(COM_SIN(1), COM_MOD%CSA1)
-  call CalcStream(COM_SIN(2), COM_MOD%CSA2)
+! Calculate the rest parameters in global stream variables 
+  call CalcStream(COM_MOD, COM_SIN)
 
   if (COM_OPT(3) .eq. 1) then
   ! Write MD module parameters into data file for debugging

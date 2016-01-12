@@ -30,7 +30,6 @@
 		<File RelativePath=".\tmp_STM.txt"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\CalcProf.F90"/>
-		<File RelativePath=".\CalcSOUT.F90"/>
 		<File RelativePath=".\commod.f"/>
 		<File RelativePath=".\d1mach.f"/>
 		<File RelativePath=".\dqk15.f"/>
