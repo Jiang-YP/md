@@ -29,9 +29,9 @@ subroutine CalcSOUT(ncomp, nmate, influents)
 
   if (COM_OPT(3) .eq. 1) then
   ! Write MD module parameters into data file for debugging
-    call WriteMOD('tmp_MOD.txt')
+    call WriteMOD(mod_def_file)
   ! Write streams into data file for debugging
-    call WriteStream('tmp_stream.txt')
+    call WriteStream(stm_def_file)
   end if
   
 ! Calculate the temperature profiles in both lumen and shell sides  
@@ -49,7 +49,9 @@ subroutine WriteMOD(DataFileName)
   use toolkits
   
   character*(*), intent(in) :: DataFileName
+  character*30, dimension(21) :: mod_data_name
   real, dimension(21) :: mod_data
+  integer :: i
   
   mod_data(1) = COM_MOD%NUM
   mod_data(2) = COM_MOD%LEN
@@ -72,9 +74,31 @@ subroutine WriteMOD(DataFileName)
   mod_data(19) = COM_MOD%Membrane%PoreRadius
   mod_data(20) = COM_MOD%Performance%JM
   mod_data(21) = COM_MOD%Performance%eta
+
+  mod_data_name(1) = 'COM_MOD%NUM'
+  mod_data_name(2) = 'COM_MOD%LEN'
+  mod_data_name(3) = 'COM_MOD%ID1'
+  mod_data_name(4) = 'COM_MOD%OD1'
+  mod_data_name(5) = 'COM_MOD%ID2'
+  mod_data_name(6) = 'COM_MOD%OD2'
+  mod_data_name(7) = 'COM_MOD%THK'
+  mod_data_name(8) = 'COM_MOD%PHI'
+  mod_data_name(9) = 'COM_MOD%AM'
+  mod_data_name(10) = 'COM_MOD%CSA1'
+  mod_data_name(11) = 'COM_MOD%CSA2'
+  mod_data_name(12) = 'COM_MOD%Membrane%rho'
+  mod_data_name(13) = 'COM_MOD%Membrane%mu'
+  mod_data_name(14) = 'COM_MOD%Membrane%cp'
+  mod_data_name(15) = 'COM_MOD%Membrane%KM'
+  mod_data_name(16) = 'COM_MOD%Membrane%CM'
+  mod_data_name(17) = 'COM_MOD%Membrane%porosity'
+  mod_data_name(18) = 'COM_MOD%Membrane%tortuosity'
+  mod_data_name(19) = 'COM_MOD%Membrane%PoreRadius'
+  mod_data_name(20) = 'COM_MOD%Performance%JM'
+  mod_data_name(21) = 'COM_MOD%Performance%eta'
   
   open(11, file = DataFileName, status = 'replace')
-  write(11, '(E12.5)') mod_data
+  write(11, mod_def_file_fmt) (mod_data_name(i), mod_data(i), i = 1, 21)
   write(11, *)
   write(11, *) 'Successfully generate data file at '//clock()//' '//date()
   close(11)
@@ -87,6 +111,7 @@ subroutine WriteStream(DataFileName)
   
   character*(*), intent(in) :: DataFileName
   real, dimension(15,2) :: stream_data
+  character*30, dimension(15) :: stream_data_name
   integer :: ISIDE
   
   do ISIDE = 1, 2
@@ -106,10 +131,25 @@ subroutine WriteStream(DataFileName)
     stream_data(14,ISIDE) = COM_SIN(ISIDE)%MolarFlow%H2O
     stream_data(15,ISIDE) = COM_SIN(ISIDE)%MolarFlow%NaCl    
   end do
+    stream_data_name(1) = 'COM_SIN(ISIDE)%W'
+    stream_data_name(2) = 'COM_SIN(ISIDE)%T'
+    stream_data_name(3) = 'COM_SIN(ISIDE)%P'
+    stream_data_name(4) = 'COM_SIN(ISIDE)%G'
+    stream_data_name(5) = 'COM_SIN(ISIDE)%u'
+    stream_data_name(6) = 'COM_SIN(ISIDE)%Re'
+    stream_data_name(7) = 'COM_SIN(ISIDE)%Nu'
+    stream_data_name(8) = 'COM_SIN(ISIDE)%PhysProp%rho'
+    stream_data_name(9) = 'COM_SIN(ISIDE)%PhysProp%mu'
+    stream_data_name(10) = 'COM_SIN(ISIDE)%PhysProp%cp'
+    stream_data_name(11) = 'COM_SIN(ISIDE)%PhysProp%KM'
+    stream_data_name(12) = 'COM_SIN(ISIDE)%MassFrac%H2O'
+    stream_data_name(13) = 'COM_SIN(ISIDE)%MassFrac%NaCl'
+    stream_data_name(14) = 'COM_SIN(ISIDE)%MolarFlow%H2O'
+    stream_data_name(15) = 'COM_SIN(ISIDE)%MolarFlow%NaCl'
   
   open(11, file = DataFileName, status = 'replace')
   do i = 1, 15
-    write(11, '(2E12.5)') (stream_data(i,ISIDE), ISIDE = 1, 2)
+    write(11,  stm_def_file_fmt) stream_data_name(i), stream_data(i,1), stream_data(i,2)
   end do
   write(11, *)
   write(11, *) 'Successfully generate data file at '//clock()//' '//date()  

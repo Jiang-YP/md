@@ -6,6 +6,7 @@ Thumbs.db
 *_temp/
 *_temp.*
 *.tmp
+tmp_*.*
 #Ignore files build by Visual Studio
 *.user
 *.aps

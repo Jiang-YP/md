@@ -11,6 +11,12 @@ c     Define the grid number
       Integer, parameter :: COM_AxialGridNum = 21
 c     The maximum iterative number      
       Integer, parameter :: MaxIterNum = 100
+c     Define the data file names
+      character*11, parameter :: mod_def_file = 'tmp_MOD.txt'
+      character*11, parameter :: stm_def_file = 'tmp_STM.txt'
+c     Define the data file formats
+      character*13, parameter :: mod_def_file_fmt = '(A30, 1E12.5)'
+      character*13, parameter :: stm_def_file_fmt = '(A30, 2E12.5)'
       
 c     Define the physical properties
       type PhysProp

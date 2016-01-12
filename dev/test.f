@@ -25,12 +25,10 @@
 !        call CalcStream(S2, COM_MOD%CSA2)
 
         ! get MD module parameters
-        call ReadMOD('tmp_MOD.txt')
+        call ReadMOD(mod_def_file)
         ! get feeding streams
-        call ReadStream('tmp_stream.txt')
-
-	  call CalcModule(COM_MOD)
-        
+        call ReadStream(stm_def_file)
+       
         S1 = COM_SIN(1)
         S2 = COM_SIN(2)
         call CalcProfile(S1, S2, S3, S4)
@@ -266,10 +264,11 @@
         character*(*), intent(in) :: DataFileName
         integer :: i
         real, dimension(21) :: mod_data
+        character*31 :: dummy_str
         
         open(11, file = DataFileName, action = 'read')
         do i = 1, 21
-          read(11, '(E12.5)') mod_data(i)
+          read(11, mod_def_file_fmt) dummy_str, mod_data(i)
         end do
         close(11)
         
@@ -304,10 +303,12 @@
         character*(*), intent(in) :: DataFileName
         real, dimension(15,2) :: stream_data
         integer :: ISIDE
+        character*31 :: dummy_str
         
         open(11, file = DataFileName, action = 'read')
         do i = 1, 15
-          read(11, '(2E12.5)') (stream_data(i,ISIDE), ISIDE = 1, 2)
+          read(11, stm_def_file_fmt) dummy_str, stream_data(i,1), 
+     +                                    stream_data(i,2)
         end do
         close(11)
         
