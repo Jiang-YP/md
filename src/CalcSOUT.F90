@@ -109,8 +109,8 @@ subroutine WriteStream(DataFileName)
   use toolkits
   
   character*(*), intent(in) :: DataFileName
-  real, dimension(15,2) :: stream_data
-  character*30, dimension(15) :: stream_data_name
+  real, dimension(18,2) :: stream_data
+  character*31, dimension(18) :: stream_data_name
   integer :: ISIDE
   
   do ISIDE = 1, 2
@@ -128,7 +128,10 @@ subroutine WriteStream(DataFileName)
     stream_data(12,ISIDE) = COM_SIN(ISIDE)%MassFrac%H2O
     stream_data(13,ISIDE) = COM_SIN(ISIDE)%MassFrac%NaCl
     stream_data(14,ISIDE) = COM_SIN(ISIDE)%MolarFlow%H2O
-    stream_data(15,ISIDE) = COM_SIN(ISIDE)%MolarFlow%NaCl    
+    stream_data(15,ISIDE) = COM_SIN(ISIDE)%MolarFlow%NaCl
+    stream_data(16,ISIDE) = COM_SIN(ISIDE)%MolarFlow%Na
+    stream_data(17,ISIDE) = COM_SIN(ISIDE)%MolarFlow%NaClS
+    stream_data(18,ISIDE) = COM_SIN(ISIDE)%MolarFlow%Cl
   end do
     stream_data_name(1) = 'COM_SIN(ISIDE)%W'
     stream_data_name(2) = 'COM_SIN(ISIDE)%T'
@@ -145,9 +148,12 @@ subroutine WriteStream(DataFileName)
     stream_data_name(13) = 'COM_SIN(ISIDE)%MassFrac%NaCl'
     stream_data_name(14) = 'COM_SIN(ISIDE)%MolarFlow%H2O'
     stream_data_name(15) = 'COM_SIN(ISIDE)%MolarFlow%NaCl'
+    stream_data_name(16) = 'COM_SIN(ISIDE)%MolarFlow%Na'
+    stream_data_name(17) = 'COM_SIN(ISIDE)%MolarFlow%NaClS'
+    stream_data_name(18) = 'COM_SIN(ISIDE)%MolarFlow%Cl'
   
   open(11, file = DataFileName, status = 'replace')
-  do i = 1, 15
+  do i = 1, 18
     write(11,  stm_def_file_fmt) stream_data_name(i), stream_data(i,1), stream_data(i,2)
   end do
   write(11, *)

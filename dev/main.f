@@ -23,6 +23,7 @@
 !     test the effective diffusion coefficient
 !      call test_ EffectiveDiffusivity
 !      call test_DAVG
+      call test_SetStreamIndex
       call test_CalcProfile
 
       end program main

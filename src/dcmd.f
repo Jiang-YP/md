@@ -7,7 +7,7 @@ C     Revision 2.1(16022), code alias: boiler
 C
 C     User Unit Operation Model (or Report) Subroutine for USER2
 C
-      SUBROUTINE DCMD  (NMATI,  SIN,    NINFI,   SINFI,  NMATO,
+      SUBROUTINE DCMD  (NMATI,  SIN0,    NINFI,   SINFI,  NMATO,
      2                   SOUT,   NINFO,  SINFO,   IDSMI,  IDSII,
      3                   IDSMO,  IDSIO,  NTOT,    NSUBS,  IDXSUB,
      4                   ITYPE,  NINT,   INT,     NREAL,  REAL,
@@ -43,13 +43,13 @@ C     Declare arguments
      +        IDXSUB(NSUBS), ITYPE(NSUBS), INT(NINT),
      +        IDS(2,3), NBOPST(6,NPO),
      +        IWORK(NIWORK), INTSIZ(NSIZE), NREAL, LD 
-      real*8 SIN(NTOT,NMATI), SINFI(NINFI),
+      real*8 SIN0(NTOT,NMATI), SINFI(NINFI),
      +       SOUT(NTOT,NMATO), SINFO(NINFO),
      +       WORK(NWORK), SIZE(NSIZE), REAL(NREAL)
 C     Declare local variables
       integer OFFSET, IERR, LDATA, KDIAG, IDX(10), NCP, I, J, 
      +        INDEX, LMW, IFAIL
-      real*8 X(10), Y(10), PHI(10), DPHI(10), FLOW
+      real*8 SIN(NTOT,NMATI), X(10), Y(10), PHI(10), DPHI(10), FLOW
 C     Declare dummies used only for invoking subroutines
       real*8 DUMMY, DUMMY2(2)
 C     Declare Aspen I/O functions
@@ -92,7 +92,9 @@ C     OPT3 = 1 - export temporary files
       IF (IERR .NE. 0) THEN
         WRITE(USER_NHSTRY, *) 'ERROR FETCHING RUNNING OPTION 3'
         IFAIL = 1
-      END IF      
+      END IF 
+C     Option for setting the feeding side in lumen side (OPT4 = 1)
+C                                      or in shell side (OPT4 = 2)           
       IERR = USRUTL_GET_INT_PARAM('OPT4', INDEX, COM_OPT(4))
       IF (IERR .NE. 0) THEN
         WRITE(USER_NHSTRY, *) 'ERROR FETCHING RUNNING OPTION 4'
@@ -186,6 +188,12 @@ C     Check whether are there two outlet streams
         WRITE(USER_NHSTRY, *) 'ERROR: TWO OUTLET STREAMS NEEDED'
         RETURN
       END IF
+
+C     Set the feeding stream index as declaration of COM_OPT(4)
+C     ISIDE = 1 means feeding in lumen side, 
+C         and 2 means feeding in shell side
+      call SetStreamIndex(COM_OPT(4), SIN0, SIN)
+
 C     Get streams from Aspen Plus
       DO ISIDE = 1, 2
 C       Get mass flowrates = (molar flowrate)*(molecular weight), [kg/s]

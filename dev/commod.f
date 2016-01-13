@@ -113,6 +113,27 @@ c     Define common variables
       
       contains
 
+c     Set the stream index as input argument
+      subroutine SetStreamIndex(idx, stm_in, stm_out)
+      integer, intent(in) :: idx
+      real*8, dimension(:,:), intent(in) :: stm_in
+      real*8, dimension(:,:), intent(out) :: stm_out
+      integer, dimension(2) :: shp_stm
+      integer :: i
+      shp_stm = shape(stm_in)
+c     Search the stream with non-zero Na
+      do i = 1, shp_stm(2)
+        if (stm_in(3,i) .NE. zero) then
+          if (i .NE. idx) then
+            stm_out(1:shp_stm(1),idx) = stm_in(1:shp_stm(1),i)
+            stm_out(1:shp_stm(1),i)   = stm_in(1:shp_stm(1),idx)
+          else
+            stm_out = stm_in
+          end if
+        end if
+      end do
+      end subroutine
+
 c     Initiate module parameters
       subroutine InitMOD(mod)
         type(ModuleParam), intent(inout) :: mod

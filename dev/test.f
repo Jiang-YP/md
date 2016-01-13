@@ -258,7 +258,21 @@
 !      pause
 !      end subroutine test_heatTransferRate
 
-    
+      subroutine test_SetStreamIndex
+      use CommonDef
+      real*8, dimension(8,2) :: A, B
+      integer :: i, j
+
+      do i = 1, 8
+        A(i,1) = 1.
+      end do
+      do i = 1, 8
+        A(i,2) = 0.
+      end do
+
+      call SetStreamIndex(2, A, B)
+
+      end subroutine
       
       subroutine ReadMOD(DataFileName)
         use CommonDef
@@ -304,12 +318,12 @@
         use toolkits
         
         character*(*), intent(in) :: DataFileName
-        real, dimension(15,2) :: stream_data
+        real, dimension(18,2) :: stream_data
         integer :: ISIDE
         character*31 :: dummy_str
         
         open(11, file = DataFileName, action = 'read')
-        do i = 1, 15
+        do i = 1, 18
           read(11, stm_def_file_fmt) dummy_str, stream_data(i,1), 
      +                                    stream_data(i,2)
         end do
@@ -330,7 +344,11 @@
           COM_SIN(ISIDE)%MassFrac%H2O = stream_data(12,ISIDE)
           COM_SIN(ISIDE)%MassFrac%NaCl = stream_data(13,ISIDE)
           COM_SIN(ISIDE)%MolarFlow%H2O = stream_data(14,ISIDE)
-          COM_SIN(ISIDE)%MolarFlow%NaCl = stream_data(15,ISIDE)  
+          COM_SIN(ISIDE)%MolarFlow%NaCl = stream_data(15,ISIDE)
+          COM_SIN(ISIDE)%MolarFlow%Na = stream_data(16,ISIDE)
+          COM_SIN(ISIDE)%MolarFlow%NaClS = stream_data(17,ISIDE)
+          COM_SIN(ISIDE)%MolarFlow%Cl = stream_data(18,ISIDE)
+            
         end do
                
       end subroutine
