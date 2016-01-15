@@ -17,7 +17,6 @@ C
 C
 C     Invoke the common module in commod.f to define global variables
       use CommonDef
-      use VaporConc
 C      
       IMPLICIT NONE
 C	Use Aspen build-in Terminal File Writer Utility to show some message

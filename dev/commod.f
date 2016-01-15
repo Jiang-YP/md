@@ -340,6 +340,19 @@ c     Calculate the LMTD
         real*8, intent(in) :: DT1, DT2
         LMTD = (DT1-DT2)/DLOG(DT1/DT2)
       end function
+
+c     The averaged molecular weight [kg/kmol]
+      real(8) function AvgMolWeight(n, comp_mw, comp_x)
+c       Molecular weight vector of each component
+        real*8, dimension(:), intent(in) :: comp_mw 
+c       Molar fraction vector
+        real*8, dimension(:), intent(in) :: comp_x 
+        integer :: i
+        AvgMolWeight = 0.
+        do i = 1, n
+          AvgMolWeight = AvgMolWeight+comp_mw(i)*comp_x(i)
+        end do
+      end function
       
 c     Grid the domain
       subroutine Grid1D(x0, x1, A, opt)
@@ -373,7 +386,7 @@ c         Generate the grid data
       
       logical(2) function IsRelDiff(x1, x2, RelTol)
         real*8, intent(in) :: x1, x2, RelTol
-        if ((dabs(x1)-dabs(x2))/dabs(x1) .le. RelTol) then
+        if (dabs((x1-x2)/x1) .le. RelTol) then
           IsRelDiff = .true.
         else
           IsRelDiff = .false.
