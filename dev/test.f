@@ -2,44 +2,31 @@
         use CommonDef
         use VaporConc
         type(StreamProp) :: S1, S2, S3, S4
-!        ! Construct the membrane module
-!        COM_MOD%NUM = 8.4d2
-!        COM_MOD%LEN = 0.3867
-!        COM_MOD%ID1 = 0.98d-3
-!        COM_MOD%OD1 = 1.46d-3
-!        COM_MOD%PHI = 0.5
-!        COM_MOD%Membrane%porosity = 0.7
-!        COM_MOD%Membrane%PoreRadius = 0.15d-6
-!        call CalcModule(COM_MOD)
-!        ! Construct the stream
-!        S1%W = 1.0d-1 ! lumen-side mass flowrate is 0.1 kg/s
-!        S1%T = UnitConvert(8.0d1, "C", "K")
-!        S1%P = 2.0d+5 ! lumen-side inlet pressure is 200 kPa
-!        S1%PhysProp%rho = 1.d3
-!        S1%PhysProp%mu = 1.d-3
-!        S1%PhysProp%cp = 4.12d3 ! specific heat is 4.12e3 J/kg-K
-!        S1%PhysProp%KM = WaterConductivity(S1%T)
-!        call CalcStream(S1, COM_MOD%CSA1)
-!        S2 = S1
-!        S2%T = UnitConvert(4.0d1, "C", "K")
-!        call CalcStream(S2, COM_MOD%CSA2)
-
-        ! get MD module parameters
+!       get MD module parameters as COM_MOD
         call ReadMOD(mod_def_file)
-        ! get feeding streams
+!       get feeding streams as COM_IN
         call ReadStream(stm_def_file)
-       
-        call CalcModule(COM_MOD)
-        call CalcStream(COM_MOD, COM_SIN)
-               
+!       test the subroutines of CalcModule and CalcStream
+!        call CalcModule(COM_MOD)
+!        call CalcStream(COM_MOD, COM_SIN)            
         S1 = COM_SIN(1)
         S2 = COM_SIN(2)
         call CalcProfile(S1, S2, S3, S4)
+!       export the resulted streams as COM_SOUT
         COM_SOUT(1) = S3
         COM_SOUT(2) = S4
-        
       end subroutine
       
+      subroutine test_AvgMolWeight
+        use CommonDef
+        use VaporConc
+        real*8 :: cmw(3), cx(3)
+!        data cmw /18., 22.989, 35.453/
+        data cx /0.97, 0.015, 0.015/
+        cmw = (/18., 22.989, 35.453/)
+        write(*, *) AvgMolWeight(3, cmw, cx)
+      end subroutine
+
       subroutine test_DAVG
         use CommonDef
         real*8, dimension(5) :: y
@@ -48,115 +35,115 @@
       end subroutine
       
       subroutine test_MolarLatentHeat
-      use CommonDef
-      use VaporConc
-      real*8 :: T, MLH
-!     Initiate the temperature
-!      T = UnitConvert(6.d1, "C", "K") ! absolute temperature
-      write(*, *) "Input the temperture for evaluation"
-      read(*, *) T
-      MLH = MolarLatentHeat(T)
-      write (*, *) "Known molar latent heat of water in 60 C"
-      write (*, *) "42.624 kJ/mol"
-      write (*, *) "The calculated value is"
-      write (*, *) MLH
-      pause
+        use CommonDef
+        use VaporConc
+        real*8 :: T, MLH
+  !     Initiate the temperature
+  !      T = UnitConvert(6.d1, "C", "K") ! absolute temperature
+        write(*, *) "Input the temperture for evaluation"
+        read(*, *) T
+        MLH = MolarLatentHeat(T)
+        write (*, *) "Known molar latent heat of water in 60 C"
+        write (*, *) "42.624 kJ/mol"
+        write (*, *) "The calculated value is"
+        write (*, *) MLH
+        pause
       end subroutine
       
       subroutine test_PressureDerivation_dP(T)
-      use CommonDef
-      use vaporConc
-      real*8 :: T,PreDe  
-      write(*, *) "Input the temperture for evaluation"
-      read(*, *) T
-      PreDe  = dP(T)
-      write (*, *) "The calculated value is"
-      write (*, *) PreDe 
-      pause
+        use CommonDef
+        use vaporConc
+        real*8 :: T,PreDe  
+        write(*, *) "Input the temperture for evaluation"
+        read(*, *) T
+        PreDe  = dP(T)
+        write (*, *) "The calculated value is"
+        write (*, *) PreDe 
+        pause
       end subroutine
       
       subroutine test_powerfunction_L(T)
-      use CommonDef
-      use vaporConc
-      real*8 :: T,POWERFUNC  
-      write(*, *) "Input the temperture for evaluation"
-      read(*, *) T
-      POWERFUNC = L(T)
-      write (*, *) "The calculated value is"
-      write (*, *) POWERFUNC
-      pause
+        use CommonDef
+        use vaporConc
+        real*8 :: T,POWERFUNC  
+        write(*, *) "Input the temperture for evaluation"
+        read(*, *) T
+        POWERFUNC = L(T)
+        write (*, *) "The calculated value is"
+        write (*, *) POWERFUNC
+        pause
       end subroutine
       
       subroutine test_VaporPressure
-      use CommonDef
-      use vaporConc
-      real*8 :: T, VP
-!     Initiate the temperature
-!      T = UnitConvert(6.d1, "C", "K") ! absolute temperature
-      write(*, *) "Input the temperture for evaluation"
-      read(*, *) T
-      VP = VaporPressure(T)
-      write (*, *) "Known Vapor Pressure of saturated water in 50 C"
-      write (*, *) "12334 Pa"
-      write (*, *) "The calculated value is"
-      write (*, *) VP
-      pause
+        use CommonDef
+        use vaporConc
+        real*8 :: T, VP
+  !     Initiate the temperature
+  !      T = UnitConvert(6.d1, "C", "K") ! absolute temperature
+        write(*, *) "Input the temperture for evaluation"
+        read(*, *) T
+        VP = VaporPressure(T)
+        write (*, *) "Known Vapor Pressure of saturated water in 50 C"
+        write (*, *) "12334 Pa"
+        write (*, *) "The calculated value is"
+        write (*, *) VP
+        pause
       end subroutine
       
       subroutine test_tortuosity(porosity)
-      use CommonDef
-      use vaporConc
-      real*8 :: porosity,tortuo
-      write(*, *) "Input the porosity for evaluation"
-      read(*, *) porosity
-      tortuo = tortuosity(porosity)
-      write (*, *) "The calculated value is"
-      write (*, *) tortuo
-      pause
+        use CommonDef
+        use vaporConc
+        real*8 :: porosity,tortuo
+        write(*, *) "Input the porosity for evaluation"
+        read(*, *) porosity
+        tortuo = tortuosity(porosity)
+        write (*, *) "The calculated value is"
+        write (*, *) tortuo
+        pause
       end subroutine
             
 
       
       subroutine test_EffThermalConductivity
-      use CommonDef
-      use vaporConc
-      real*8 :: T,porosity, solidConductivity,ETherCon
-      write(*, *) "Input the posrosity for evaluation"
-      read(*, *) porosity
-      write(*, *) "Input the SolidConductivity for evaluation"
-      read(*, *)  solidConductivity
-      write(*, *) "Input the temperture for evaluation"
-      read(*, *) T
-      ETherCon = EffThermalCond(T)
-      write (*, *) "The calculated value is"
-      write (*, *) ETherCon
-      pause
+        use CommonDef
+        use vaporConc
+        real*8 :: T,porosity, solidConductivity,ETherCon
+        write(*, *) "Input the posrosity for evaluation"
+        read(*, *) porosity
+        write(*, *) "Input the SolidConductivity for evaluation"
+        read(*, *)  solidConductivity
+        write(*, *) "Input the temperture for evaluation"
+        read(*, *) T
+        ETherCon = EffThermalCond(T)
+        write (*, *) "The calculated value is"
+        write (*, *) ETherCon
+        pause
       end subroutine
       
       subroutine test_EffectiveMolarEnthalpy
-      use CommonDef
-      use vaporConc
-      real*8 :: T,EMolarEn
-      write(*, *) "Input the temperture for evaluation"
-      read(*, *) T
-      EMolarEn = EffMolEnthalpy(T)
-      write (*, *) "The calculated value is"
-      write (*, *) EMolarEn
-      pause
+        use CommonDef
+        use vaporConc
+        real*8 :: T,EMolarEn
+        write(*, *) "Input the temperture for evaluation"
+        read(*, *) T
+        EMolarEn = EffMolEnthalpy(T)
+        write (*, *) "The calculated value is"
+        write (*, *) EMolarEn
+        pause
       end subroutine      
       
       subroutine test_ EffectiveDiffusivity
-      use CommonDef
-      use vaporConc
-      real*8 :: T,EfDiffu
-      write(*, *) "Input the PoreRadius for evaluation"
-      read(*, *) PoreRadius
-      write(*, *) "Input the temperture for evaluation"
-      read(*, *) T
-      EfDiffu = EffDiffusivity(T)
-      write (*, *) "The calculated value is"
-      write (*, *) EfDiffu
-      pause
+        use CommonDef
+        use vaporConc
+        real*8 :: T,EfDiffu
+        write(*, *) "Input the PoreRadius for evaluation"
+        read(*, *) PoreRadius
+        write(*, *) "Input the temperture for evaluation"
+        read(*, *) T
+        EfDiffu = EffDiffusivity(T)
+        write (*, *) "The calculated value is"
+        write (*, *) EfDiffu
+        pause
       end subroutine         
       
 !      subroutine test_qag
@@ -259,19 +246,16 @@
 !      end subroutine test_heatTransferRate
 
       subroutine test_SetStreamIndex
-      use CommonDef
-      real*8, dimension(8,2) :: A, B
-      integer :: i, j
-
-      do i = 1, 8
-        A(i,1) = 1.
-      end do
-      do i = 1, 8
-        A(i,2) = 0.
-      end do
-
-      call SetStreamIndex(2, A, B)
-
+        use CommonDef
+        real*8, dimension(8,2) :: A, B
+        integer :: i, j
+        do i = 1, 8
+          A(i,1) = 1.
+        end do
+        do i = 1, 8
+          A(i,2) = 0.
+        end do
+        call SetStreamIndex(2, A, B)
       end subroutine
       
       subroutine ReadMOD(DataFileName)

@@ -33,26 +33,26 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   sigma = one/dsqrt(COM_MOD%PHI)
       
   ! Grid the location arrays
-!  call Grid1D(zero, one, LumenRadialLoc, opt)
-  LumenRadialLoc(1) = zero
-  do i=2, COM_RadialGridNum
-    LumenRadialLoc(i) = LumenRadialLoc(i-1)+(one-zero)/(COM_RadialGridNum-1)
-  end do
-!  call Grid1D(zero, one, LumenAxialLoc, opt)
-  LumenAxialLoc(1) = zero
-  do i=2, COM_AxialGridNum
-    LumenAxialLoc(i) = LumenAxialLoc(i-1)+(one-zero)/(COM_AxialGridNum-1)
-  end do
-!  call Grid1D(one, sigma, ShellRadialLoc, opt)
-  ShellRadialLoc(1) = one
-  do i=2, COM_RadialGridNum
-    ShellRadialLoc(i) = ShellRadialLoc(i-1)+(sigma-one)/(COM_RadialGridNum-1)
-  end do
-!  call Grid1D(zero, one, ShellAxialLoc, opt)
-  ShellAxialLoc(1) = zero
-  do i=2, COM_AxialGridNum
-    ShellAxialLoc(i) = ShellAxialLoc(i-1)+(one-zero)/(COM_AxialGridNum-1)
-  end do
+  call Grid1D(zero, one, LumenRadialLoc, opt)
+!  LumenRadialLoc(1) = zero
+!  do i=2, COM_RadialGridNum
+!    LumenRadialLoc(i) = LumenRadialLoc(i-1)+(one-zero)/(COM_RadialGridNum-1)
+!  end do
+  call Grid1D(zero, one, LumenAxialLoc, opt)
+!  LumenAxialLoc(1) = zero
+!  do i=2, COM_AxialGridNum
+!    LumenAxialLoc(i) = LumenAxialLoc(i-1)+(one-zero)/(COM_AxialGridNum-1)
+!  end do
+  call Grid1D(one, sigma, ShellRadialLoc, opt)
+!  ShellRadialLoc(1) = one
+!  do i=2, COM_RadialGridNum
+!    ShellRadialLoc(i) = ShellRadialLoc(i-1)+(sigma-one)/(COM_RadialGridNum-1)
+!  end do
+  call Grid1D(zero, one, ShellAxialLoc, opt)
+!  ShellAxialLoc(1) = zero
+!  do i=2, COM_AxialGridNum
+!    ShellAxialLoc(i) = ShellAxialLoc(i-1)+(one-zero)/(COM_AxialGridNum-1)
+!  end do
   
   ! Initiate the flow field
   do j = 1, COM_AxialGridNum

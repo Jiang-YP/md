@@ -17,6 +17,7 @@ C
 C
 C     Invoke the common module in commod.f to define global variables
       use CommonDef
+      use VaporConc
 C      
       IMPLICIT NONE
 C	Use Aspen build-in Terminal File Writer Utility to show some message
@@ -50,6 +51,7 @@ C     Declare local variables
       integer OFFSET, IERR, LDATA, KDIAG, IDX(10), NCP, I, J, 
      +        INDEX, LMW, IFAIL
       real*8 SIN(NTOT,NMATI), X(10), Y(10), PHI(10), DPHI(10), FLOW
+      real*8 CMW(3)
 C     Declare dummies used only for invoking subroutines
       real*8 DUMMY, DUMMY2(2)
 C     Declare Aspen I/O functions
@@ -224,6 +226,8 @@ C       Get thermal conductivity of liquid mixture, [W/m-K]
 C       Get specific heat of liquid mixture, [J/kg-K]
 C       Enthalpy monitor is called with KH=2 to compute the specific heat
 C       Refer to "Aspen Properties: toolkit manual" P57
+C       The cp output is in [J/kmol-K],
+C       ref to "Aspen Properties: toolkit manual" P24
         CALL PPMON_ENTHL(SIN(NCOMP_NCC+2,ISIDE), SIN(NCOMP_NCC+3,ISIDE),
      +                   X, NCP, IDX, NBOPST, KDIAG, 0, 2, DUMMY,
      +                   COM_SIN(ISIDE)%PhysProp%cp, IERR)
@@ -231,6 +235,14 @@ C       Refer to "Aspen Properties: toolkit manual" P57
           WRITE(USER_NHSTRY, *) 'ERROR EVALUATING SPECIFIC HEAT'
           IFAIL = 1
         END IF
+C       Get the average molecular weight
+!        COM_SIN(ISIDE)%PhysProp%AMW = PPUTL_AVEMW(NCP, IDX, X)
+        CMW = (/18., 22.989, 35.453/)
+        COM_SIN(ISIDE)%PhysProp%AMW = 
+     +                  AvgMolWeight(NCP, CMW, X)
+C       Convert the unit from [J/kmol-K] to [J/kg-K]
+        COM_SIN(ISIDE)%PhysProp%cp = COM_SIN(ISIDE)%PhysProp%cp/
+     +                               COM_SIN(ISIDE)%PhysProp%AMW
       END DO
 
 C     Run the simulation
@@ -331,9 +343,9 @@ C       Pressure, [Pa]
         SOUT(NCOMP_NCC+3,ISIDE) = COM_SOUT(ISIDE)%P
       END DO
 
-      WRITE(MAXWRT_MAXBUF, "(2E12.4)") (COM_SOUT(ISIDE)%MolarFlow%H2O, 
-     +                                   ISIDE = 1, 2)
-      CALL DMS_WRTTRM(1)
+!      WRITE(MAXWRT_MAXBUF, "(2E12.4)") (COM_SOUT(ISIDE)%MolarFlow%H2O, 
+!     +                                   ISIDE = 1, 2)
+!      CALL DMS_WRTTRM(11)
 
       RETURN
       END

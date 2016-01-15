@@ -242,5 +242,17 @@
             real*8,intent(in) :: T ! [K]
             WaterConductivity = 6.065d-1 * (-1.48445 + 4.12292*T/298.15 -1.63866*(T/298.15)**TWO)
         end function
+
+!       The averaged molecular weight [kg/kmol]
+        real(8) function AvgMolWeight(n, comp_mw, comp_x)
+          integer, intent(in) :: n
+          real*8, dimension(:), intent(in) :: comp_mw ! molecular weight vector of each component
+          real*8, dimension(:), intent(in) :: comp_x ! molar fraction vector
+          integer :: i
+          AvgMolWeight = 0.
+          do i = 1, n
+            AvgMolWeight = AvgMolWeight+comp_mw(i)*comp_x(i)
+          end do
+        end function
                 
     end module

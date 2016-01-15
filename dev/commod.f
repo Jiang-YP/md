@@ -20,6 +20,8 @@ c     Define the data file formats
       
 c     Define the physical properties
       type PhysProp
+c       Averged molecular weight
+        real*8 :: AMW
 c       Density, viscosity, and specific heat
         real*8 :: rho, mu, cp
 c       Thermal conductivity  
