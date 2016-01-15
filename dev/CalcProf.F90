@@ -149,12 +149,12 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   COM_MOD%Performance%JM = DAVG(Fw)/b*18.0/1.d3
   
 ! Calculate the outlet streams
-  LumenOUT%MolarFlow%H2O = LumenIN%MolarFlow%H2O+COM_MOD%AM*DAVG(Fw)/b
-  ShellOUT%MolarFlow%H2O = ShellIN%MolarFlow%H2O-COM_MOD%AM*DAVG(Fw)/b
+  LumenOUT%MolarFlow%H2O = LumenIN%MolarFlow%H2O-COM_MOD%AM*DAVG(Fw)/b/1.d3
+  ShellOUT%MolarFlow%H2O = ShellIN%MolarFlow%H2O+COM_MOD%AM*DAVG(Fw)/b/1.d3
   LumenOUT%MolarFlow%NaCl = LumenIN%MolarFlow%NaCl
   ShellOUT%MolarFlow%NaCl = ShellIN%MolarFlow%NaCl
-  LumenOUT%W = LumenIN%W+COM_MOD%AM*COM_MOD%Performance%JM
-  ShellOUT%W = ShellIN%W-COM_MOD%AM*COM_MOD%Performance%JM
+  LumenOUT%W = LumenIN%W-COM_MOD%AM*COM_MOD%Performance%JM
+  ShellOUT%W = ShellIN%W+COM_MOD%AM*COM_MOD%Performance%JM
   LumenOUT%P = LumenIN%P
   ShellOUT%P = ShellIN%P  
 
