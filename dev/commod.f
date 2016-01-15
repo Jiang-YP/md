@@ -353,6 +353,19 @@ c       Molar fraction vector
           AvgMolWeight = AvgMolWeight+comp_mw(i)*comp_x(i)
         end do
       end function
+
+c     A simple numerical integration for 1-d dispersed points
+      real(8) function Integration(x, y)
+        real*8, dimension(:), intent(in) :: x, y
+        real*8 :: dx
+        integer :: n, i
+        Integration = zero
+        n = size(x)
+        do i = 1, n-1
+          dx = x(i+1)-x(i)
+          Integration = Integration+dx*(y(i+1)+y(i))/two
+        end do
+      end function
       
 c     Grid the domain
       subroutine Grid1D(x0, x1, A, opt)

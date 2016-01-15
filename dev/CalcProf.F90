@@ -72,7 +72,8 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
     end do
     
     ! Calculate the average local heat transfer rate per unit length
-    AvgSq = DAVG(Sq)
+!    AvgSq = DAVG(Sq)
+    AvgSq = Integration(LumenAxialLoc, Sq)
     
     ! Check for converge
     if (IsRelDiff(AvgSq, PrevIterAvgSq, 1.d-6)) then
