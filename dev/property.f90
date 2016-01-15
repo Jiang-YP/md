@@ -10,7 +10,7 @@
     
         use CommonDef
         real*8, parameter :: L0 = 57.075, L1 = 4.3856d-2, P0 = 1.0684d4, R = 8.314
-        
+
         contains
        
         real(8) function dnw(T) ! derivation of molar concentration
@@ -26,26 +26,26 @@
             real(8), intent(in) :: T
             SteamDensity = 8.3139d-2 ! Steam density at 50 C
         end function
-        
-        real(8) function dP(T) ! derivation of pressure
-            real*8, intent(in) :: T ! temperature can be in absolute degree or Celcius degree
+
+        real(8) function dP(Tin) ! derivation of pressure
+            real*8, intent(in) :: Tin ! temperature can be in absolute degree or Celcius degree
+            real*8 :: T
+            real*8 :: A(3)
+            real*8 :: C(5)
+            data A /23.238, 3841.0, -45.0/
+            data C /73.649, -7258.2, -7.3037, 4.1653E-6, 2.0/
         !   Check the input temperture to be absolute temperature
-            if (CheckRange(T, 2.7315d2, 3.7315d2)) then ! the input temperature is absolute temperature
-            !   Check the input argument in the specific range
-                if (CheckRange(UnitConvert(T, "K", "C"), 0.d0, 1.d2)) then
-                   dP = P0 * (MolarLatentHeat(T)/(R*T*T))*DEXP(-L(T)/(R*T))
-                else
-                   dP = zero
-                end if                
-            else ! the input temperature is in Celcius degree
-            !   Check the input argument in the specific range after unit conversion
-                if (CheckRange(T, 0.d0, 1.d2)) then
-                    dP = P0 * (MolarLatentHeat(UnitConvert(T, "C", "K"))/(R*UnitConvert(T, "C", "K")*UnitConvert(T, "C", "K")))*DEXP(-L(UnitConvert(T, "C", "K"))/(R*UnitConvert(T, "C", "K")))
-                else
-                    dP = zero
-                end if                  
+            if (CheckRange(Tin, 2.7315d2, 3.7315d2)) then 
+            ! the input temperature is absolute temperature and in the range of (0-100) celcius degree
+              T = Tin  
+            else
+              T = UnitConvert(Tin, "C", "K")
             end if
-            
+            ! Kim2013JMS correlation
+            dP = P0 * (MolarLatentHeat(T)/(R*T*T))*DEXP(-L(T)/(R*T))
+            ! Antonie correlation
+            dP = (A(2)/T**two)*DEXP(A(1)-A(2)/(A(3)+T))
+!            dP = DEXP(C(1)+C(2)/T+C(3)*DLOG(T)+C(4)*T**C(5))*(-C(2)/T**two+C(3)/T+C(4)*C(5)*T**(C(5)-one))            
         end function
                 
         real(8) function MolarLatentHeat(T) ! molar latent heat of saturated water [kJ/mol]
