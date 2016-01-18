@@ -32,7 +32,9 @@
 		<File RelativePath=".\CalcProf.F90"/>
 		<File RelativePath=".\commod.f"/>
 		<File RelativePath=".\d1mach.f"/>
+		<File RelativePath=".\DIFF.F"/>
 		<File RelativePath=".\dqk15.f"/>
+		<File RelativePath=".\i1mach.f"/>
 		<File RelativePath=".\localflux.f90"/>
 		<File RelativePath=".\main.f"/>
 		<File RelativePath=".\property.f90"/>

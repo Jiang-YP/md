@@ -14,7 +14,7 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   real*8 :: ShellRadialLoc(COM_RadialGridNum), ShellAxialLoc(COM_AxialGridNum)
   integer :: opt
   integer :: i, j
-  real*8 :: Ta, Tb, Sq(COM_AxialGridNum), Fw(COM_AxialGridNum), AvgSq, PrevIterAvgSq
+  real*8 :: Ta, Tb, Sq(COM_AxialGridNum), Fw(COM_AxialGridNum), AvgSq, AvgFw, PrevIterAvgSq
   real*8 :: dT_lmn, dT_shl
   real*8 :: a, b, c, L
   real*8 :: sigma, eta, zeta, xi
@@ -74,6 +74,7 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
     ! Calculate the average local heat transfer rate per unit length
 !    AvgSq = DAVG(Sq)
     AvgSq = Integration(LumenAxialLoc, Sq)
+    AvgFw = Integration(LumenAxialLoc, Fw)
     
     ! Check for converge
     if (IsRelDiff(AvgSq, PrevIterAvgSq, 1.d-6)) then
@@ -146,7 +147,7 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   ShellOUT%T = DAVG(ShellStream(:,1)%T)
   
 ! Calculate permeation flux [kg/m2-s]
-  COM_MOD%Performance%JM = DAVG(Fw)/b*18.0/1.d3
+  COM_MOD%Performance%JM = AvgFw/b*18.0/1.d3
   
 ! Calculate the outlet streams
   LumenOUT%MolarFlow%H2O = LumenIN%MolarFlow%H2O-COM_MOD%AM*DAVG(Fw)/b/1.d3

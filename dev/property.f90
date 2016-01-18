@@ -17,9 +17,34 @@
             real(8), intent(in) :: T ! Temperature [K] 
             real(8) :: p ! vapor pressure corresponding to T [Pa]
             ! For ideal gas
-            p = VaporPressure(T)
+            call SatVapPres(2, T, p)
             rho = SteamDensity(T) 
             dnw = 1/(R)*(dP(T)/T-p/(T*T))
+        end function
+
+        real(8) function diffnw(temp) ! derivation of molar concentration
+          real(8), intent(in) :: temp ! Temperature [K] 
+          real(8) :: p ! vapor pressure corresponding to T [Pa]
+          real(8) :: diffP ! deriviation of saturated vapor pressure [Pa]
+          ! For ideal gas
+!         Define the arguments required for subroutine DIFF()
+          real :: T, Tmin, Tmax, eps, acc, deriv, err
+          integer :: IORD, IFAIL
+          Tmin = 0.
+          Tmax = 100.
+          eps = 1.e-5
+          acc = 0.
+          IORD = 1
+!         Check the input temperature's unit
+          if (temp .LE. 273.15) then
+            T = temp
+          else
+            T = temp-273.15
+          end if
+!         Invoke the subroutine diff() to calculate the 1st-order deriviation of saturation vapor pressure.
+!         Due to the default REAL used in the subroutine diff(), a interface function SVP(?) is required, where (?) means the method to correlate the saturation vapor pressure.
+          call Diff(IORD, T, Tmin, Tmax, SVP1, eps, acc, deriv, err, IFAIL)
+          diffnw = 1/(R*T)*(deriv-p/T)
         end function
         
         real(8) function SteamDensity(T)
@@ -102,30 +127,89 @@
             end if
             
         end function
-        
-        real(8) function VaporPressure(T) ! Calculate the vapor pressure of saturated water [Pa]
-                                            ! The correlation of vapor pressure is suggested by Kim
-            real(8), intent(in) :: T ! Temperature [K]
-        ! temperature can be in absolute degree or Celcius degree
-        !   Check the input temperture to be absolute temperature
-            if (CheckRange(T, 2.7315d2, 3.7315d2)) then ! the input temperature is absolute temperature
-            !   Check the input argument in the specific range
-                if (CheckRange(UnitConvert(T, "K", "C"), 0.d0, 1.d2)) then
-                    VaporPressure = T**(-L1/R)*dexp(dlog(p0)-L0/R/T)
-                else
-                    VaporPressure = zero
-                end if                
-            else ! the input temperature is in Celcius degree
-            !   Check the input argument in the specific range after unit conversion
-                if (CheckRange(T, 0.d0, 1.d2)) then
-                    VaporPressure =  UnitConvert(T, "C", "K")**(-L1/R)*dexp(dlog(p0)-L0/R/ UnitConvert(T, "C", "K"))
-                else
-                    VaporPressure = zero
-                end if                  
-            end if
-            
-        end function
+
+        subroutine SatVapPres(opt, temp, SVP, IFAIL)
+!         Saturated vapor pressure [Pa]
+          integer, intent(in) :: opt ! options for using specific correlation
+          real*8, intent(in) :: temp ! input temperature [K]
+          real*8, intent(out) :: SVP ! output saturation vapor pressure [Pa]
+          integer, intent(out), optional :: IFAIL ! options for running result, if no error, IFAIL = 0
+          real*8 :: T
+          real*8 :: A(3)
+          real*8 :: C(5)
+          data A /23.238, 3841.0, -45.0/
+          data C /73.649, -7258.2, -7.3037, 4.1653E-6, 2.0/
+          ! Initiation
+          SVP = zero
+          if (present(IFAIL)) IFAIL = 0
+          ! Check the input temperature's unit
+          IF (temp .LE. 273.15) THEN
+            T = 273.15+temp
+          END IF
+          ! Check the input temperature's range
+          if (T .GE. 373.15) then
+            if (present(IFAIL)) IFAIL = 2
+            return
+          end if
+          select case(opt)
+            case(1)
+              ! Antonie correlation
+              SVP = DEXP(A(1)-A(2)/(A(3)+T))
+            case(2)
+              SVP = DEXP(C(1)+C(2)/T+C(3)*DLOG(T)+C(4)*T**C(5))
+            case(3)
+              ! Kim correlation
+              SVP = T**(-L1/R)*dexp(dlog(p0)-L0/R/T)
+          end select
+        end subroutine
+
+!        real(8) function VaporPressure(T) ! Calculate the vapor pressure of saturated water [Pa]
+!                                            ! The correlation of vapor pressure is suggested by Kim
+!            real(8), intent(in) :: T ! Temperature [K]
+!        ! temperature can be in absolute degree or Celcius degree
+!        !   Check the input temperture to be absolute temperature
+!            if (CheckRange(T, 2.7315d2, 3.7315d2)) then ! the input temperature is absolute temperature
+!            !   Check the input argument in the specific range
+!                if (CheckRange(UnitConvert(T, "K", "C"), 0.d0, 1.d2)) then
+!                    VaporPressure = T**(-L1/R)*dexp(dlog(p0)-L0/R/T)
+!                else
+!                    VaporPressure = zero
+!                end if                
+!            else ! the input temperature is in Celcius degree
+!            !   Check the input argument in the specific range after unit conversion
+!                if (CheckRange(T, 0.d0, 1.d2)) then
+!                    VaporPressure =  UnitConvert(T, "C", "K")**(-L1/R)*dexp(dlog(p0)-L0/R/ UnitConvert(T, "C", "K"))
+!                else
+!                    VaporPressure = zero
+!                end if                  
+!            end if
+!            
+!        end function
            
+        real function SVP1(temp)
+          real, intent(in) :: temp
+          real*8 :: T, Psat
+          T = Temp
+          call SatVapPres(1, T, Psat)
+          SVP1 = Psat
+        end function
+
+        real function SVP2(temp)
+          real, intent(in) :: temp
+          real*8 :: T, Psat
+          T = Temp
+          call SatVapPres(2, T, Psat)
+          SVP2 = Psat
+        end function
+
+        real function SVP3(temp)
+          real, intent(in) :: temp
+          real*8 :: T, Psat
+          T = Temp
+          call SatVapPres(3, T, Psat)
+          SVP3 = Psat
+        end function
+
         real(8) function tortuosity(porosity)
         ! Calculate the tortuosity for highly interconnected pores
         ! The analytical approach is developed in Beekman's work

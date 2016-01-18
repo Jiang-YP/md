@@ -1,3 +1,36 @@
+      subroutine test_DiffVaporPressure
+!       Compare the results of subroutine dP(T) and Diff(VaporPressure(T))
+        use CommonDef
+        use VaporConc
+!       Define the arguments required for subroutine DIFF()
+        real :: T, Tmin, Tmax, eps, acc, deriv, err
+        integer :: IORD, IFAIL
+!       Define the local variables
+        real*8 :: Tchk(5), VP(5), diffSVP1(5), diffSVP2(5), diffSVP3(5)
+        integer :: i
+        Tmin = 0.
+        Tmax = 100.
+        eps = 1.e-5
+        acc = 0.
+        IORD = 1
+        data Tchk /30., 40., 50., 60., 70./
+        do i = 1, 5
+          T = Tchk(i)
+          call Diff(IORD, T, Tmin, Tmax, SVP1, eps, acc, 
+     +               deriv, err, IFAIL)
+          diffSVP1(i) = deriv
+          call Diff(IORD, T, Tmin, Tmax, SVP2, eps, acc, 
+     +               deriv, err, IFAIL)
+          diffSVP2(i) = deriv
+          call Diff(IORD, T, Tmin, Tmax, SVP3, eps, acc, 
+     +               deriv, err, IFAIL)
+          diffSVP3(i) = deriv          
+        end do
+        write(*, '(3E12.4)') (diffSVP1(i), diffSVP2(i), diffSVP3(i),
+     +                         i = 1, 5)
+        pause
+      end subroutine
+
       subroutine test_CalcProfile
         use CommonDef
         use VaporConc
@@ -77,16 +110,20 @@
       subroutine test_VaporPressure
         use CommonDef
         use vaporConc
-        real*8 :: T, VP
+        real*8 :: T, VP1, VP2, VP3
+        integer :: IFAIL
   !     Initiate the temperature
   !      T = UnitConvert(6.d1, "C", "K") ! absolute temperature
-        write(*, *) "Input the temperture for evaluation"
-        read(*, *) T
-        VP = VaporPressure(T)
+!        write(*, *) "Input the temperture for evaluation"
+!        read(*, *) T
+        T = 50.
+        call SatVapPres(1, T, VP1, IFAIL)
+        call SatVapPres(2, T, VP2, IFAIL)
+        call SatVapPres(3, T, VP3, IFAIL)
         write (*, *) "Known Vapor Pressure of saturated water in 50 C"
         write (*, *) "12334 Pa"
         write (*, *) "The calculated value is"
-        write (*, *) VP
+        write (*, '(4F8.1)') VP1, VP2, VP3
         pause
       end subroutine
       
@@ -205,18 +242,7 @@
       real*8 function g(x)
       real*8, intent(in) :: x
       g = DCOS(x)
-      end function
-
-      
-      subroutine test_moduleVaporConc
-      use VaporConc
-      real*8 estT, estP
-      estT = 6.0d1
-      estP = 7.6d2
-      write(*, *) "Check the result of vapor pressure:"
-      write(*, *) VaporPressure(estT)
-      pause
-      end subroutine test_moduleVaporConc     
+      end function  
       
 !      subroutine test_conductivity
 !      use VaporConc

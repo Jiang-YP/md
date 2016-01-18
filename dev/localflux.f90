@@ -33,7 +33,8 @@ real*8 function f1(T)
     epsilon = COM_MOD%Membrane%porosity
     tau = tortuosity(epsilon)
     Deff = EffDiffusivity(T)
-    f1 = Deff*epsilon/tau*dnw(T)
+    f1 = Deff*epsilon/tau*diffnw(T)
+!    f1 = Deff*epsilon/tau*dnw(T)
 end function
 
 real*8 function f2(T)

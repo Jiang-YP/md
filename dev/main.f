@@ -14,6 +14,7 @@
 !      call test_powerfunction_L(T)
 !     test the vapor pressure of saturated water (something wrong with the results)
 !      call test_VaporPressure
+!      call test_DiffVaporPressure
 !     test the tortuosity(porosity)
 !      call test_tortuosity(porosity)
 !     test the effective thermal conductivity(error)
