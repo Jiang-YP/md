@@ -29,6 +29,8 @@ C     Pass arrays containing component data such as molecular weight
 #include "dms_plex.cmn"
       real*8 B(1)
       equivalence (B(1), IB(1))
+C     PROPERTY PARAMETERS OFFSETS, E.G., FOR MW
+#include "dms_ipoff1.cmn"
 C     Pass NCOMP_NCC
 #include "dms_ncomp.cmn"
 C
@@ -50,7 +52,8 @@ C     Declare local variables
       integer OFFSET, IERR, LDATA, KDIAG, IDX(10), NCP, I, J, 
      +        INDEX, LMW, IFAIL
       real*8 SIN(NTOT,NMATI), X(10), Y(10), PHI(10), DPHI(10), FLOW
-      real*8 CMW(3)
+      integer XMW(NCOMP_NCC), LXMW
+      real*8 CMW(NCOMP_NCC)
 C     Declare dummies used only for invoking subroutines
       real*8 DUMMY, DUMMY2(2)
 C     Declare Aspen I/O functions
@@ -236,9 +239,14 @@ C       ref to "Aspen Properties: toolkit manual" P24
         END IF
 C       Get the average molecular weight
 !        COM_SIN(ISIDE)%PhysProp%AMW = PPUTL_AVEMW(NCP, IDX, X)
-        CMW = (/18., 22.989, 35.453/)
+        LXMW = IPOFF1_IPOFF1(306)
+        do i = 1, NCOMP_NCC
+          XMW(i) = LXMW+i
+          CMW(i) = B(XMW(i))
+        end do
         COM_SIN(ISIDE)%PhysProp%AMW = 
-     +                  AvgMolWeight(NCP, CMW, X)
+     +                  AvgMolWeight(NCP, CMW(IDX), X(1:NCP))
+!        WRITE(MAXWRT_MAXBUF, "(2E12.4)") (CMW(IDX(i)), X(i), i=1, NCP)
 C       Convert the unit from [J/kmol-K] to [J/kg-K]
         COM_SIN(ISIDE)%PhysProp%cp = COM_SIN(ISIDE)%PhysProp%cp/
      +                               COM_SIN(ISIDE)%PhysProp%AMW
@@ -344,7 +352,7 @@ C       Pressure, [Pa]
 
 !      WRITE(MAXWRT_MAXBUF, "(2E12.4)") (COM_SOUT(ISIDE)%MolarFlow%H2O, 
 !     +                                   ISIDE = 1, 2)
-!      CALL DMS_WRTTRM(11)
+      CALL DMS_WRTTRM(11)
 
       RETURN
       END
