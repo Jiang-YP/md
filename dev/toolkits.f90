@@ -53,5 +53,14 @@ contains
   end if
   close(11) 
   end subroutine
+
+  Logical function CheckRange(eval, lb, ub) ! if the value in the range of (lb, ub)
+    real*8, intent(in) :: eval, lb, ub
+    if ((eval .ge. lb) .and. (eval .le. ub)) then
+        CheckRange = .true.
+    else
+        CheckRange = .false.
+    end if
+  end function
   
 end module

@@ -26,8 +26,8 @@
      +               deriv, err, IFAIL)
           diffSVP3(i) = deriv          
         end do
-        write(*, '(3E12.4)') (diffSVP1(i), diffSVP2(i), diffSVP3(i),
-     +                         i = 1, 5)
+        write(*, '(F5.1, 3E12.4)') (Tchk(i), diffSVP1(i), diffSVP2(i), 
+     +                               diffSVP3(i), i = 1, 5)
         pause
       end subroutine
 
@@ -67,63 +67,52 @@
         write(*, *) DAVG(y)
       end subroutine
       
-      subroutine test_MolarLatentHeat
-        use CommonDef
-        use VaporConc
-        real*8 :: T, MLH
-  !     Initiate the temperature
-  !      T = UnitConvert(6.d1, "C", "K") ! absolute temperature
-        write(*, *) "Input the temperture for evaluation"
-        read(*, *) T
-        MLH = MolarLatentHeat(T)
-        write (*, *) "Known molar latent heat of water in 60 C"
-        write (*, *) "42.624 kJ/mol"
-        write (*, *) "The calculated value is"
-        write (*, *) MLH
-        pause
-      end subroutine
-      
-      subroutine test_PressureDerivation_dP(T)
-        use CommonDef
-        use vaporConc
-        real*8 :: T,PreDe  
-        write(*, *) "Input the temperture for evaluation"
-        read(*, *) T
-        PreDe  = dP(T)
-        write (*, *) "The calculated value is"
-        write (*, *) PreDe 
-        pause
-      end subroutine
-      
-      subroutine test_powerfunction_L(T)
-        use CommonDef
-        use vaporConc
-        real*8 :: T,POWERFUNC  
-        write(*, *) "Input the temperture for evaluation"
-        read(*, *) T
-        POWERFUNC = L(T)
-        write (*, *) "The calculated value is"
-        write (*, *) POWERFUNC
-        pause
-      end subroutine
+!      subroutine test_MolarLatentHeat
+!        use CommonDef
+!        use VaporConc
+!        real*8 :: T, MLH
+!  !     Initiate the temperature
+!  !      T = UnitConvert(6.d1, "C", "K") ! absolute temperature
+!        write(*, *) "Input the temperture for evaluation"
+!        read(*, *) T
+!        MLH = MolarLatentHeat(T)
+!        write (*, *) "Known molar latent heat of water in 60 C"
+!        write (*, *) "42.624 kJ/mol"
+!        write (*, *) "The calculated value is"
+!        write (*, *) MLH
+!        pause
+!      end subroutine
+!      
+!      subroutine test_powerfunction_L(T)
+!        use CommonDef
+!        use vaporConc
+!        real*8 :: T,POWERFUNC  
+!        write(*, *) "Input the temperture for evaluation"
+!        read(*, *) T
+!        POWERFUNC = L(T)
+!        write (*, *) "The calculated value is"
+!        write (*, *) POWERFUNC
+!        pause
+!      end subroutine
       
       subroutine test_VaporPressure
         use CommonDef
         use vaporConc
-        real*8 :: T, VP1, VP2, VP3
-        integer :: IFAIL
-  !     Initiate the temperature
-  !      T = UnitConvert(6.d1, "C", "K") ! absolute temperature
-!        write(*, *) "Input the temperture for evaluation"
-!        read(*, *) T
-        T = 50.
-        call SatVapPres(1, T, VP1, IFAIL)
-        call SatVapPres(2, T, VP2, IFAIL)
-        call SatVapPres(3, T, VP3, IFAIL)
-        write (*, *) "Known Vapor Pressure of saturated water in 50 C"
-        write (*, *) "12334 Pa"
-        write (*, *) "The calculated value is"
-        write (*, '(4F8.1)') VP1, VP2, VP3
+        real*8 :: T(7), VP1(7), VP2(7), VP3(7)
+        real*8 :: expVP(7), RelErr
+        integer :: i, IFAIL
+!       Experimental data of saturation vapor pressure of water
+        data T     /  15.,   25.,   35.,   45.,    55.,    65.,    75./
+        data expVP /1706., 3170., 5629., 9594., 15761., 25041., 38595./
+!       Correlate the SVP
+        do i = 1, 7
+          call SatVapPres(1, T(i), VP1(i), IFAIL)
+          call SatVapPres(2, T(i), VP2(i), IFAIL)
+          call SatVapPres(3, T(i), VP3(i), IFAIL)
+        end do
+        write(*, '(A12, F4.0, A9, F8.0, A4, F8.0, A4, F8.0, A4, F8.0)') 
+     +        ('Temperature', T(i), 'Exp.VP', expVP(i), 'VP1', VP1(i), 
+     +                    'VP2', VP2(i), 'VP3', VP3(i), i = 1, 5)
         pause
       end subroutine
       
@@ -138,9 +127,7 @@
         write (*, *) tortuo
         pause
       end subroutine
-            
-
-      
+        
       subroutine test_EffThermalConductivity
         use CommonDef
         use vaporConc

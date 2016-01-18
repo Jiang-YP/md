@@ -7,20 +7,23 @@
     ! Calculate the molar latent heat of saturated water based on data fitting 
     ! at temperature range of 0-100 C
     ! Kim A.S., Journal of membrane science, 428(2013), 410-424
+    ! [2016/01/18] The saturation vapor pressure (SVP) of water, correlated by Kim, produces poor outputs, which are far away from the experimental data. The 5-parameter model was finally used to obtain the SVP and deriviation of SVP.
     
         use CommonDef
+        use ToolKits
+
         real*8, parameter :: L0 = 57.075, L1 = 4.3856d-2, P0 = 1.0684d4, R = 8.314
 
         contains
-       
-        real(8) function dnw(T) ! derivation of molar concentration
-            real(8), intent(in) :: T ! Temperature [K] 
-            real(8) :: p ! vapor pressure corresponding to T [Pa]
-            ! For ideal gas
-            call SatVapPres(2, T, p)
-            rho = SteamDensity(T) 
-            dnw = 1/(R)*(dP(T)/T-p/(T*T))
-        end function
+!       
+!        real(8) function dnw(T) ! derivation of molar concentration
+!            real(8), intent(in) :: T ! Temperature [K] 
+!            real(8) :: p ! vapor pressure corresponding to T [Pa]
+!            ! For ideal gas
+!            call SatVapPres(2, T, p)
+!            rho = SteamDensity(T) 
+!            dnw = 1/(R)*(dP(T)/T-p/(T*T))
+!        end function
 
         real(8) function diffnw(temp) ! derivation of molar concentration
           real(8), intent(in) :: temp ! Temperature [K] 
@@ -43,90 +46,81 @@
           end if
 !         Invoke the subroutine diff() to calculate the 1st-order deriviation of saturation vapor pressure.
 !         Due to the default REAL used in the subroutine diff(), a interface function SVP(?) is required, where (?) means the method to correlate the saturation vapor pressure.
-          call Diff(IORD, T, Tmin, Tmax, SVP1, eps, acc, deriv, err, IFAIL)
-          diffnw = 1/(R*T)*(deriv-p/T)
+          call diff(IORD, T, Tmin, Tmax, SVP1, eps, acc, deriv, err, IFAIL)
+          diffP = deriv
+          diffnw = 1/(R*T)*(diffP-p/T)
         end function
         
         real(8) function SteamDensity(T)
             real(8), intent(in) :: T
-            SteamDensity = 8.3139d-2 ! Steam density at 50 C
+            SteamDensity = 8.3139d-2 ! Steam density at 50 C [kg/m3]
         end function
 
-        real(8) function dP(Tin) ! derivation of pressure
-            real*8, intent(in) :: Tin ! temperature can be in absolute degree or Celcius degree
-            real*8 :: T
-            real*8 :: A(3)
-            real*8 :: C(5)
-            data A /23.238, 3841.0, -45.0/
-            data C /73.649, -7258.2, -7.3037, 4.1653E-6, 2.0/
-        !   Check the input temperture to be absolute temperature
-            if (CheckRange(Tin, 2.7315d2, 3.7315d2)) then 
-            ! the input temperature is absolute temperature and in the range of (0-100) celcius degree
-              T = Tin  
-            else
-              T = UnitConvert(Tin, "C", "K")
-            end if
-            ! Kim2013JMS correlation
-            dP = P0 * (MolarLatentHeat(T)/(R*T*T))*DEXP(-L(T)/(R*T))
-            ! Antonie correlation
-            dP = (A(2)/T**two)*DEXP(A(1)-A(2)/(A(3)+T))
-!            dP = DEXP(C(1)+C(2)/T+C(3)*DLOG(T)+C(4)*T**C(5))*(-C(2)/T**two+C(3)/T+C(4)*C(5)*T**(C(5)-one))            
-        end function
+!        real(8) function dP(Tin) ! derivation of pressure
+!            real*8, intent(in) :: Tin ! temperature can be in absolute degree or Celcius degree
+!            real*8 :: T
+!            real*8 :: A(3)
+!            real*8 :: C(5)
+!            data A /23.238, 3841.0, -45.0/
+!            data C /73.649, -7258.2, -7.3037, 4.1653E-6, 2.0/
+!        !   Check the input temperture to be absolute temperature
+!            if (CheckRange(Tin, 2.7315d2, 3.7315d2)) then 
+!            ! the input temperature is absolute temperature and in the range of (0-100) celcius degree
+!              T = Tin  
+!            else
+!              T = UnitConvert(Tin, "C", "K")
+!            end if
+!            ! Kim2013JMS correlation
+!            dP = P0 * (MolarLatentHeat(T)/(R*T*T))*DEXP(-L(T)/(R*T))
+!            ! Antonie correlation
+!            dP = (A(2)/T**two)*DEXP(A(1)-A(2)/(A(3)+T))
+!!            dP = DEXP(C(1)+C(2)/T+C(3)*DLOG(T)+C(4)*T**C(5))*(-C(2)/T**two+C(3)/T+C(4)*C(5)*T**(C(5)-one))            
+!        end function
                 
-        real(8) function MolarLatentHeat(T) ! molar latent heat of saturated water [kJ/mol]
-                                              ! temperature range of 0-100 C
-        ! Correlate the molar latent heat by data fitting
-            real(8), intent(in) :: T ! temperature can be in absolute degree or Celcius degree
-        !   Check the input temperture to be absolute temperature
-            if (CheckRange(T, 2.7315d2, 3.7315d2)) then ! the input temperature is absolute temperature
-            !   Check the input argument in the specific range
-                if (CheckRange(UnitConvert(T, "K", "C"), 0.d0, 1.d2)) then
-                    MolarLatentHeat = L0-L1*T
-                else
-                    MolarLatentHeat = zero
-                end if                
-            else ! the input temperature is in Celcius degree
-            !   Check the input argument in the specific range after unit conversion
-                if (CheckRange(T, 0.d0, 1.d2)) then
-                    MolarLatentHeat = L0-L1*UnitConvert(T, "C", "K")
-                else
-                    MolarLatentHeat = zero
-                end if                  
-            end if
-
-        end function
-        
-        Logical function CheckRange(eval, lb, ub) ! if the value in the range of (lb, ub)
-            real*8, intent(in) :: eval, lb, ub
-            if ((eval .ge. lb) .and. (eval .le. ub)) then
-                CheckRange = .true.
-            else
-                CheckRange = .false.
-            end if
-        end function
-        
-        real(8) function L(T) ! power function in dP(T) calculation, 
-                                ! which has same dimension as molar latent heat [kJ/mol]
-            real*8, intent(in) :: T ! Temperature [K]
-             ! temperature can be in absolute degree or Celcius degree
-        !   Check the input temperture to be absolute temperature
-            if (CheckRange(T, 2.7315d2, 3.7315d2)) then ! the input temperature is absolute temperature
-            !   Check the input argument in the specific range
-                if (CheckRange(UnitConvert(T, "K", "C"), 0.d0, 1.d2)) then
-                   L = L0 + L1*T*DLOG(T)
-                else
-                   L = zero
-                end if                
-            else ! the input temperature is in Celcius degree
-            !   Check the input argument in the specific range after unit conversion
-                if (CheckRange(T, 0.d0, 1.d2)) then
-                   L = L0 + L1*UnitConvert(T, "C", "K")*DLOG(UnitConvert(T, "C", "K"))
-                else
-                   L = zero
-                end if                  
-            end if
-            
-        end function
+!        real(8) function MolarLatentHeat(T) ! molar latent heat of saturated water [kJ/mol]
+!                                              ! temperature range of 0-100 C
+!        ! Correlate the molar latent heat by data fitting
+!            real(8), intent(in) :: T ! temperature can be in absolute degree or Celcius degree
+!        !   Check the input temperture to be absolute temperature
+!            if (CheckRange(T, 2.7315d2, 3.7315d2)) then ! the input temperature is absolute temperature
+!            !   Check the input argument in the specific range
+!                if (CheckRange(UnitConvert(T, "K", "C"), 0.d0, 1.d2)) then
+!                    MolarLatentHeat = L0-L1*T
+!                else
+!                    MolarLatentHeat = zero
+!                end if                
+!            else ! the input temperature is in Celcius degree
+!            !   Check the input argument in the specific range after unit conversion
+!                if (CheckRange(T, 0.d0, 1.d2)) then
+!                    MolarLatentHeat = L0-L1*UnitConvert(T, "C", "K")
+!                else
+!                    MolarLatentHeat = zero
+!                end if                  
+!            end if
+!
+!        end function
+                
+!        real(8) function L(T) ! power function in dP(T) calculation, 
+!                                ! which has same dimension as molar latent heat [kJ/mol]
+!            real*8, intent(in) :: T ! Temperature [K]
+!             ! temperature can be in absolute degree or Celcius degree
+!        !   Check the input temperture to be absolute temperature
+!            if (CheckRange(T, 2.7315d2, 3.7315d2)) then ! the input temperature is absolute temperature
+!            !   Check the input argument in the specific range
+!                if (CheckRange(UnitConvert(T, "K", "C"), 0.d0, 1.d2)) then
+!                   L = L0 + L1*T*DLOG(T)
+!                else
+!                   L = zero
+!                end if                
+!            else ! the input temperature is in Celcius degree
+!            !   Check the input argument in the specific range after unit conversion
+!                if (CheckRange(T, 0.d0, 1.d2)) then
+!                   L = L0 + L1*UnitConvert(T, "C", "K")*DLOG(UnitConvert(T, "C", "K"))
+!                else
+!                   L = zero
+!                end if                  
+!            end if            
+!        end function
 
         subroutine SatVapPres(opt, temp, SVP, IFAIL)
 !         Saturated vapor pressure [Pa]
@@ -142,7 +136,7 @@
           ! Initiation
           SVP = zero
           if (present(IFAIL)) IFAIL = 0
-          ! Check the input temperature's unit
+          ! Check the input temperature's unit [K]
           IF (temp .LE. 273.15) THEN
             T = 273.15+temp
           END IF
@@ -163,29 +157,6 @@
           end select
         end subroutine
 
-!        real(8) function VaporPressure(T) ! Calculate the vapor pressure of saturated water [Pa]
-!                                            ! The correlation of vapor pressure is suggested by Kim
-!            real(8), intent(in) :: T ! Temperature [K]
-!        ! temperature can be in absolute degree or Celcius degree
-!        !   Check the input temperture to be absolute temperature
-!            if (CheckRange(T, 2.7315d2, 3.7315d2)) then ! the input temperature is absolute temperature
-!            !   Check the input argument in the specific range
-!                if (CheckRange(UnitConvert(T, "K", "C"), 0.d0, 1.d2)) then
-!                    VaporPressure = T**(-L1/R)*dexp(dlog(p0)-L0/R/T)
-!                else
-!                    VaporPressure = zero
-!                end if                
-!            else ! the input temperature is in Celcius degree
-!            !   Check the input argument in the specific range after unit conversion
-!                if (CheckRange(T, 0.d0, 1.d2)) then
-!                    VaporPressure =  UnitConvert(T, "C", "K")**(-L1/R)*dexp(dlog(p0)-L0/R/ UnitConvert(T, "C", "K"))
-!                else
-!                    VaporPressure = zero
-!                end if                  
-!            end if
-!            
-!        end function
-           
         real function SVP1(temp)
           real, intent(in) :: temp
           real*8 :: T, Psat
