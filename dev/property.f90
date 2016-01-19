@@ -25,7 +25,7 @@
 !            dnw = 1/(R)*(dP(T)/T-p/(T*T))
 !        end function
 
-        real(8) function diffnw(temp) ! derivation of molar concentration
+        real(8) function diffnw(temp) ! derivation of molar concentration [mol/m3]
           real(8), intent(in) :: temp ! Temperature [K] 
           real(8) :: p ! vapor pressure corresponding to T [Pa]
           real(8) :: diffP ! deriviation of saturated vapor pressure [Pa]
@@ -51,16 +51,53 @@
           diffnw = 1/(R*T)*(diffP-p/T)
         end function
         
-        ! Calculate the molar concentration of vapor [kmol/m3]
-        real(8) function MolConcV(temp, pres)
+        ! Calculate the molar concentration of vapor [mol/m3]
+        real(8) function MolConcV(temp)
           real(8), intent(in) :: temp ! input temperature [K] or [C]
-          real(8), intent(in) :: pres ! future use
           integer :: opt = 1
+          real*8 :: pres = 1.01325d5! given pressure
           real*8 :: SVV ! Specific volume of vapor at given temp and press
           integer :: IFAIL ! status for running result
           ! get the specific volume of vapor [m3/kg]
           call SpecVolV(opt, temp, pres, SVV, IFAIL)
-          MolConcV = one/SVV/18.0
+          MolConcV = one/SVV/18.0*1d3
+        end function
+
+        ! Molar concentration of vapor for diff() invoking [mol/m3]
+        real function nw(temp) 
+          real, intent(in) :: temp
+          real*8 :: T
+!         Check the input temperature's unit [K]
+          if (temp .LE. 273.15) then
+            T = temp+273.15
+          else
+            T = temp
+          end if
+          nw = MolConcV(T)
+        end function
+
+        ! Calculate the deriviation of specific volume of vapor
+        real(8) function diffnw2(temp) ! derivation of molar concentration
+          real(8), intent(in) :: temp ! Temperature [K] 
+          real(8) :: p ! vapor pressure corresponding to T [Pa]
+          real(8) :: diffP ! deriviation of saturated vapor pressure [Pa]
+          ! For real steam
+!         Define the arguments required for subroutine DIFF()
+          real :: T, Tmin, Tmax, eps, acc, deriv, err
+          integer :: IORD, IFAIL
+          Tmin = 0.
+          Tmax = 100.
+          eps = 1.e-5
+          acc = 0.
+          IORD = 1
+!         Check the input temperature's unit
+          if (temp .LE. 273.15) then
+            T = temp
+          else
+            T = temp-273.15
+          end if
+          call diff(IORD, T, Tmin, Tmax, nw, eps, acc, deriv, err, IFAIL)
+          diffnw2 = deriv
         end function
 
 !        real(8) function dP(Tin) ! derivation of pressure
@@ -146,23 +183,27 @@
           data K /277., 280., 288., 298., 308., 318., 328., 338., 358., 341./
           ! Initiation
           SVV = zero
-          IDERIV = 0
           INBV = 1
           if (present(IFAIL)) IFAIL = 0
           ! Check the input temperature's unit [K]
           IF (temp .LE. 273.15) THEN
             T = 273.15+temp
+          else
+            T = temp
           END IF
           ! Check the input temperature's range
           if (T .GE. 373.15) then
             if (present(IFAIL)) IFAIL = 2
             return
           end if
+          call DBINTK(X,Y,K,N,M,BCOEF,Q,WORK)
           select case(opt)
             case(1)
-              call DBINTK(X,Y,K,N,M,BCOEF,Q,WORK)
+              IDERIV = 0
               SVV = DBVALU(K,BCOEF,N,M,IDERIV,T,INBV,WORK)
             case(2)
+              IDERIV = 1
+              SVV = DBVALU(K,BCOEF,N,M,IDERIV,T,INBV,WORK)
           end select
         end subroutine
 

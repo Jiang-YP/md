@@ -352,10 +352,21 @@
 
       subroutine test_SpecVolV
       use VaporConc
-      real*8 :: temp = 50.
       real*8 :: pres = 101.325
       integer :: opt = 1
-      real*8 :: SVV
-      integer :: IFAIL
-      call SpecVolV(opt, temp, pres, SVV, IFAIL)
+      real*8 :: SVV, MCV1, MCV2, MCV3 
+      real*8, dimension(5) :: dnw0, dnw1, dnw2, dnw3, temp
+      integer :: IFAIL, i
+      data temp /15., 25., 35., 45., 55./
+      call SpecVolV(opt, temp(2), pres, SVV, IFAIL)
+      do i = 1, 5
+        MCV1 = MolConcV(temp(i)-one)
+        MCV2 = MolConcV(temp(i))
+        MCV3 = MolConcV(temp(i)+one)
+        dnw0(i) = diffnw(temp(i))
+        dnw1(i) = ((MCV2-MCV1)+(MCV3-MCV2))/two
+        dnw2(i) = diffnw2(temp(i))
+      end do
+      write(*, '(5E12.4)') (dnw0(i), dnw1(i), dnw2(i), i = 1, 5)
+      pause
       end subroutine
