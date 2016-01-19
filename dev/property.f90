@@ -51,9 +51,16 @@
           diffnw = 1/(R*T)*(diffP-p/T)
         end function
         
-        real(8) function SteamDensity(T)
-            real(8), intent(in) :: T
-            SteamDensity = 8.3139d-2 ! Steam density at 50 C [kg/m3]
+        ! Calculate the molar concentration of vapor [kmol/m3]
+        real(8) function MolConcV(temp, pres)
+          real(8), intent(in) :: temp ! input temperature [K] or [C]
+          real(8), intent(in) :: pres ! future use
+          integer :: opt = 1
+          real*8 :: SVV ! Specific volume of vapor at given temp and press
+          integer :: IFAIL ! status for running result
+          ! get the specific volume of vapor [m3/kg]
+          call SpecVolV(opt, temp, pres, SVV, IFAIL)
+          MolConcV = one/SVV/18.0
         end function
 
 !        real(8) function dP(Tin) ! derivation of pressure
@@ -121,6 +128,43 @@
 !                end if                  
 !            end if            
 !        end function
+
+!       Specific volume of vapor
+        subroutine SpecVolV(opt, temp, pres, SVV, IFAIL)
+          integer, intent(in) :: opt ! runing options
+          real*8, intent(in) :: temp ! input temperature [K]
+          real*8, intent(in) :: pres ! input pressure [Pa]
+          real*8, intent(out) :: SVV ! output saturation vapor pressure [m3/kg]
+          integer, intent(out), optional :: IFAIL ! running result
+          real*8 :: T, P
+          integer, parameter :: N = 8, M = 2
+          real*8 :: X(N), Y(N), K(N+M), BCOEF(M), Q((2*M-1)*N), WORK(2*M)
+          integer :: IDERIV, INBV 
+          real*8 :: DBVALU
+          data X /283., 293, 303., 313., 323., 333., 343., 353./
+          data Y /106.31, 57.761, 32.882, 19.517, 12.028, 7.6677, 5.0397, 3.4053/
+          data K /277., 280., 288., 298., 308., 318., 328., 338., 358., 341./
+          ! Initiation
+          SVV = zero
+          IDERIV = 0
+          INBV = 1
+          if (present(IFAIL)) IFAIL = 0
+          ! Check the input temperature's unit [K]
+          IF (temp .LE. 273.15) THEN
+            T = 273.15+temp
+          END IF
+          ! Check the input temperature's range
+          if (T .GE. 373.15) then
+            if (present(IFAIL)) IFAIL = 2
+            return
+          end if
+          select case(opt)
+            case(1)
+              call DBINTK(X,Y,K,N,M,BCOEF,Q,WORK)
+              SVV = DBVALU(K,BCOEF,N,M,IDERIV,T,INBV,WORK)
+            case(2)
+          end select
+        end subroutine
 
         subroutine SatVapPres(opt, temp, SVP, IFAIL)
 !         Saturated vapor pressure [Pa]

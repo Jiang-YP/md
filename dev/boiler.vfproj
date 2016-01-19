@@ -32,6 +32,8 @@
 		<File RelativePath=".\CalcProf.F90"/>
 		<File RelativePath=".\commod.f"/>
 		<File RelativePath=".\d1mach.f"/>
+		<File RelativePath=".\dbintk.f"/>
+		<File RelativePath=".\dbvalu.f"/>
 		<File RelativePath=".\DIFF.F"/>
 		<File RelativePath=".\dqk15.f"/>
 		<File RelativePath=".\i1mach.f"/>

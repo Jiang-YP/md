@@ -349,3 +349,13 @@
         end do
                
       end subroutine
+
+      subroutine test_SpecVolV
+      use VaporConc
+      real*8 :: temp = 50.
+      real*8 :: pres = 101.325
+      integer :: opt = 1
+      real*8 :: SVV
+      integer :: IFAIL
+      call SpecVolV(opt, temp, pres, SVV, IFAIL)
+      end subroutine
