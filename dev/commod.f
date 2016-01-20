@@ -18,6 +18,15 @@ c     Define the data file formats
       character*13, parameter :: mod_def_file_fmt = '(A30, 1E12.5)'
       character*13, parameter :: stm_def_file_fmt = '(A30, 2E12.5)'
       
+c     Define the properties of steam
+      type Steam
+        real*8 :: t      ! Temperature [C]
+        real*8 :: p      ! Pressure [Pa]
+        real*8 :: vl, vv ! Specific volumen of liquid and vapor [m3/kg]
+        real*8 :: hl, hv ! Specific enthalpy of liquid and vapor [kJ/kg]
+        real*8 :: sl, sv ! Specific entropy of liquid and vapor [kJ/kg-K]
+      end type Steam
+
 c     Define the physical properties
       type PhysProp
 c       Averged molecular weight
@@ -112,6 +121,7 @@ c     Define common variables
       integer :: COM_OPT(16)
       type(ModuleParam) :: COM_MOD
       type(StreamProp), dimension(2) :: COM_SIN, COM_SOUT
+      type(Steam), dimension(10), target :: COM_PWS
       
       contains
 

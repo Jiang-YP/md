@@ -63,4 +63,26 @@ contains
     end if
   end function
   
+  ! Check the unit of input temperature as declaration of unit 
+  subroutine CheckTempUnit(unit, Tin, Tout)
+    character*1, intent(in) :: unit
+    real*8, intent(in) :: Tin
+    real*8, intent(out) :: Tout
+    real*8 :: T0 = 273.15
+    select case(unit)
+      case('K')
+        if (Tin .LE. T0) then
+          Tout = Tin+T0
+        else
+          Tout = Tin
+        end if
+      case('C')
+        if (Tin .LE. T0) then
+          Tout = Tin
+        else
+          Tout = Tin-T0
+        end if
+    end select
+  end subroutine
+
 end module

@@ -1,3 +1,26 @@
+      subroutine test_SpecVolV
+        use CommonDef
+        use VaporConc
+        real*8 :: v1(5), v2(5), vk(5), T(5), RelErr(5,2)
+        integer :: i, j
+        data T /22, 35, 48, 59, 67/
+        data vk /51.422, 25.208, 13.213, 8.0093, 5.6986/
+        do i = 1, 5
+          call SpecVolV(1, T(i), v1(i))
+          call SpecVolV(2, T(i), v2(i))
+        end do
+        do i = 1, 5
+          RelErr(i,1) = abs(v1(i)-vk(i))/vk(i)
+          RelErr(i,2) = abs(v2(i)-vk(i))/vk(i)
+        end do
+        write(*, '(f5.1, 3e12.4)') (T(i), vk(i), v1(i), v2(i), i = 1, 5)
+        write(*, *) 'Relative error'
+        write(*, '(f5.1, 2f8.3)') (T(i), (RelErr(i,j), j=1, 2) , i=1, 5)
+        write(*, '(A5, 2A8)') '----', '-----', '-----'
+        write(*, '(A5, 2f8.3)') 'Avg.', (DAVG(RelErr(:,j)), j=1, 2) 
+        pause
+      end subroutine
+
       subroutine test_DiffVaporPressure
 !       Compare the results of subroutine dP(T) and Diff(VaporPressure(T))
         use CommonDef
