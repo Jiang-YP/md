@@ -51,14 +51,17 @@
           diffnw = 1/(R*T)*(diffP-p/T)
         end function
         
-        real(8) function SteamDensity(T)
+        real(8) function MolarConc(T)
             real(8), intent(in) :: T
-            SteamDensity = 8.3139d-2 ! Steam density at 50 C [kg/m3]
+            real(8) :: SVV
+            integer :: opt = 2
+            call SpecVolV(opt, T, SVV)
+            MolarConc = one/SVV/18.*1d3 ! molar concentration of steam [mol/m3]
         end function
 
 !       Specific volume of saturated vapor
         subroutine SpecVolV(opt, temp, SVV, IFAIL)
-          integer, intent(in) :: opt ! options for using specific correlation
+          integer, intent(in) :: opt ! options for using specific interpolation method
           real*8, intent(in) :: temp ! input temperature [K]
           real*8, intent(out) :: SVV ! output specific volume of vapor [m3/kg]
           integer, intent(out), optional :: IFAIL ! options for running
