@@ -26,37 +26,20 @@
 !        end function
 
         real(8) function diffnw(temp) ! derivation of molar concentration
+          use mod_adf95
           real(8), intent(in) :: temp ! Temperature [K] 
-          real(8) :: p ! vapor pressure corresponding to T [Pa]
-          real(8) :: diffP ! deriviation of saturated vapor pressure [Pa]
-          ! For ideal gas
-!         Define the arguments required for subroutine DIFF()
-          real :: T, Tmin, Tmax, eps, acc, deriv, err
-          integer :: IORD, IFAIL
-          Tmin = 0.
-          Tmax = 100.
-          eps = 1.e-5
-          acc = 0.
-          IORD = 1
-!         Check the input temperature's unit
-          if (temp .LE. 273.15) then
-            T = temp
-          else
-            T = temp-273.15
-          end if
-!         Invoke the subroutine diff() to calculate the 1st-order deriviation of saturation vapor pressure.
-!         Due to the default REAL used in the subroutine diff(), a interface function SVP(?) is required, where (?) means the method to correlate the saturation vapor pressure.
-          call diff(IORD, T, Tmin, Tmax, SVP1, eps, acc, deriv, err, IFAIL)
-          diffP = deriv
-          diffnw = 1/(R*T)*(diffP-p/T)
+          type(ADF95_dpr) :: f, x
+          call ADF95_independent(1, x, temp)
+          f = MolConc(temp) ! [Critical failure] ADF95 cannot handle this
+          diffnw = ADF95_deriv(f, 1) 
         end function
         
-        real(8) function MolarConc(T)
+        real(8) function MolConc(T)
             real(8), intent(in) :: T
             real(8) :: SVV
             integer :: opt = 2
             call SpecVolV(opt, T, SVV)
-            MolarConc = one/SVV/18.*1d3 ! molar concentration of steam [mol/m3]
+            MolConc = one/SVV/18.*1d3 ! molar concentration of steam [mol/m3]
         end function
 
 !       Specific volume of saturated vapor
@@ -85,7 +68,6 @@
             return
           end if
           xi(ni) = T
-
           select case(opt)
             case(1)
               ! Use 1d piecewise linear interpolation              

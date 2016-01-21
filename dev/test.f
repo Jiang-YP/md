@@ -1,3 +1,8 @@
+      subroutine test_diffnw
+        use VaporConc
+        write(*, *) diffnw(5d1)
+      end subroutine
+
       subroutine test_SpecVolV
         use CommonDef
         use VaporConc
@@ -21,38 +26,38 @@
         pause
       end subroutine
 
-      subroutine test_DiffVaporPressure
-!       Compare the results of subroutine dP(T) and Diff(VaporPressure(T))
-        use CommonDef
-        use VaporConc
-!       Define the arguments required for subroutine DIFF()
-        real :: T, Tmin, Tmax, eps, acc, deriv, err
-        integer :: IORD, IFAIL
-!       Define the local variables
-        real*8 :: Tchk(5), VP(5), diffSVP1(5), diffSVP2(5), diffSVP3(5)
-        integer :: i
-        Tmin = 0.
-        Tmax = 100.
-        eps = 1.e-5
-        acc = 0.
-        IORD = 1
-        data Tchk /30., 40., 50., 60., 70./
-        do i = 1, 5
-          T = Tchk(i)
-          call Diff(IORD, T, Tmin, Tmax, SVP1, eps, acc, 
-     +               deriv, err, IFAIL)
-          diffSVP1(i) = deriv
-          call Diff(IORD, T, Tmin, Tmax, SVP2, eps, acc, 
-     +               deriv, err, IFAIL)
-          diffSVP2(i) = deriv
-          call Diff(IORD, T, Tmin, Tmax, SVP3, eps, acc, 
-     +               deriv, err, IFAIL)
-          diffSVP3(i) = deriv          
-        end do
-        write(*, '(F5.1, 3E12.4)') (Tchk(i), diffSVP1(i), diffSVP2(i), 
-     +                               diffSVP3(i), i = 1, 5)
-        pause
-      end subroutine
+!      subroutine test_DiffVaporPressure
+!!       Compare the results of subroutine dP(T) and Diff(VaporPressure(T))
+!        use CommonDef
+!        use VaporConc
+!!       Define the arguments required for subroutine DIFF()
+!        real :: T, Tmin, Tmax, eps, acc, deriv, err
+!        integer :: IORD, IFAIL
+!!       Define the local variables
+!        real*8 :: Tchk(5), VP(5), diffSVP1(5), diffSVP2(5), diffSVP3(5)
+!        integer :: i
+!        Tmin = 0.
+!        Tmax = 100.
+!        eps = 1.e-5
+!        acc = 0.
+!        IORD = 1
+!        data Tchk /30., 40., 50., 60., 70./
+!        do i = 1, 5
+!          T = Tchk(i)
+!          call Diff(IORD, T, Tmin, Tmax, SVP1, eps, acc, 
+!     +               deriv, err, IFAIL)
+!          diffSVP1(i) = deriv
+!          call Diff(IORD, T, Tmin, Tmax, SVP2, eps, acc, 
+!     +               deriv, err, IFAIL)
+!          diffSVP2(i) = deriv
+!          call Diff(IORD, T, Tmin, Tmax, SVP3, eps, acc, 
+!     +               deriv, err, IFAIL)
+!          diffSVP3(i) = deriv          
+!        end do
+!        write(*, '(F5.1, 3E12.4)') (Tchk(i), diffSVP1(i), diffSVP2(i), 
+!     +                               diffSVP3(i), i = 1, 5)
+!        pause
+!      end subroutine
 
       subroutine test_CalcProfile
         use CommonDef
