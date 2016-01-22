@@ -47,7 +47,7 @@
 !         Invoke the subroutine diff() to calculate the deriviation of molar concentration with respect to temperature
 !         Due to the default REAL used in the subroutine diff(), a interface function r4MolConc() is required.
           call diff(IORD, T, Tmin, Tmax, r4MolConc, eps, acc, deriv, err, IFAIL)
-          diffnw = deriv
+          diffnw = deriv*2d1
         end function
         
         real(8) function MolarConc(T)
