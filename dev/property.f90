@@ -44,19 +44,27 @@
           else
             T = temp-273.15
           end if
-!         Invoke the subroutine diff() to calculate the 1st-order deriviation of saturation vapor pressure.
-!         Due to the default REAL used in the subroutine diff(), a interface function SVP(?) is required, where (?) means the method to correlate the saturation vapor pressure.
-          call diff(IORD, T, Tmin, Tmax, SVP1, eps, acc, deriv, err, IFAIL)
-          diffP = deriv
-          diffnw = 1/(R*T)*(diffP-p/T)
+!         Invoke the subroutine diff() to calculate the deriviation of molar concentration with respect to temperature
+!         Due to the default REAL used in the subroutine diff(), a interface function r4MolConc() is required.
+          call diff(IORD, T, Tmin, Tmax, r4MolConc, eps, acc, deriv, err, IFAIL)
+          diffnw = deriv
         end function
         
         real(8) function MolarConc(T)
-            real(8), intent(in) :: T
-            real(8) :: SVV
-            integer :: opt = 2
-            call SpecVolV(opt, T, SVV)
-            MolarConc = one/SVV/18.*1d3 ! molar concentration of steam [mol/m3]
+          real(8), intent(in) :: T
+          real(8) :: SVV
+          integer :: opt = 2
+          call SpecVolV(opt, T, SVV)
+          MolarConc = one/SVV/18.*1d3 ! molar concentration of steam [mol/m3]
+        end function
+
+        real function r4MolConc(r4T)
+          real, intent(in) :: r4T
+          real(8) :: SVV, T
+          integer :: opt = 2
+          T = r4T
+          call SpecVolV(opt, T, SVV)
+          r4MolConc = real(one/SVV/18.*1d3)
         end function
 
 !       Specific volume of saturated vapor

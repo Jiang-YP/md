@@ -1,3 +1,8 @@
+      subroutine test_diffnw
+        use VaporConc
+        write(*, *) diffnw(5d1)
+      end subroutine
+
       subroutine test_SpecVolV
         use CommonDef
         use VaporConc
@@ -238,10 +243,7 @@
       write(*, '(A40, F7.4)') "Calculated result of above integral: ", 
      &                          result
       write(*, '(A40, F7.4)') "Relative error: ", (1.0-result)/1.0
-
-
-      pause
-                 
+      pause                
       end subroutine test_dqk15
       
       function f(x)
@@ -296,19 +298,16 @@
       
       subroutine ReadMOD(DataFileName)
         use CommonDef
-        use toolkits
-        
+        use toolkits      
         character*(*), intent(in) :: DataFileName
         integer :: i
         real, dimension(21) :: mod_data
-        character*31 :: dummy_str
-        
+        character*31 :: dummy_str        
         open(11, file = DataFileName, action = 'read')
         do i = 1, 21
           read(11, mod_def_file_fmt) dummy_str, mod_data(i)
         end do
-        close(11)
-        
+        close(11)       
         COM_MOD%NUM = mod_data(1) 
         COM_MOD%LEN = mod_data(2)
         COM_MOD%ID1 = mod_data(3)
@@ -329,26 +328,22 @@
         COM_MOD%Membrane%tortuosity = mod_data(18)
         COM_MOD%Membrane%PoreRadius = mod_data(19)
         COM_MOD%Performance%JM = mod_data(20)
-        COM_MOD%Performance%eta = mod_data(21)
-        
+        COM_MOD%Performance%eta = mod_data(21)       
       end subroutine
       
       subroutine ReadStream(DataFileName)
         use CommonDef
-        use toolkits
-        
+        use toolkits        
         character*(*), intent(in) :: DataFileName
         real, dimension(18,2) :: stream_data
         integer :: ISIDE
         character*31 :: dummy_str
-        
         open(11, file = DataFileName, action = 'read')
         do i = 1, 18
           read(11, stm_def_file_fmt) dummy_str, stream_data(i,1), 
      +                                    stream_data(i,2)
         end do
         close(11)
-        
         do ISIDE = 1, 2
           COM_SIN(ISIDE)%W = stream_data(1,ISIDE)
           COM_SIN(ISIDE)%T = stream_data(2,ISIDE)
@@ -368,7 +363,5 @@
           COM_SIN(ISIDE)%MolarFlow%Na = stream_data(16,ISIDE)
           COM_SIN(ISIDE)%MolarFlow%NaClS = stream_data(17,ISIDE)
           COM_SIN(ISIDE)%MolarFlow%Cl = stream_data(18,ISIDE)
-            
-        end do
-               
+        end do              
       end subroutine
