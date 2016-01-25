@@ -352,7 +352,7 @@ C       Pressure, [Pa]
 
 !      WRITE(MAXWRT_MAXBUF, "(2E12.4)") (COM_SOUT(ISIDE)%MolarFlow%H2O, 
 !     +                                   ISIDE = 1, 2)
-      CALL DMS_WRTTRM(11)
+!      CALL DMS_WRTTRM(11)
 
       RETURN
       END

@@ -147,7 +147,7 @@ subroutine CalcProfile(LumenIN, ShellIN, LumenOUT, ShellOUT)
   ShellOUT%T = DAVG(ShellStream(:,1)%T)
   
 ! Calculate permeation flux [kg/m2-s]
-  COM_MOD%Performance%JM = AvgFw/b*18.0/1.d3
+  COM_MOD%Performance%JM = AvgFw/b*18.0/1.d3*2d0
   
 ! Calculate the outlet streams
   LumenOUT%MolarFlow%H2O = LumenIN%MolarFlow%H2O-COM_MOD%AM*DAVG(Fw)/b/1.d3
